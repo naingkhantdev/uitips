@@ -1,0 +1,178 @@
+@import "tailwindcss";
+@import "./styles/swatches.css";
+
+/* ══════════════════════════════════════════════════════════════════
+   THREE STYLES, ONE SHELL
+
+   Modernism  — the skeleton. Strict grid, flush-left, hairline rules,
+                one accent colour, mono labels, no ornament that isn't
+                doing structural work.
+   Neumorphism — the surface. Every object is extruded from a single
+                ground colour with twin light/dark shadows; interactive
+                things press *in* when you use them.
+   Y2K        — the accent. Chrome-gradient wordmark, glossy blue orbs,
+                bevelled translucent pills, silver-blue everything.
+
+   They cohere because each owns a different layer: Modernism the
+   layout, Neumorphism the material, Y2K the colour and the highlights.
+   ══════════════════════════════════════════════════════════════════ */
+
+:root {
+  /* ── neumorphic ground: one colour, everything is carved from it ── */
+  --nm-ground:   #DFE5F0;
+  --nm-sunk:     #D7DEEB;
+  --nm-lo:       #B3BFD4;   /* shadow away from the light */
+  --nm-hi:       #FFFFFF;   /* highlight toward the light */
+
+  /* ── modernist ink scale: three weights, no more ── */
+  --nm-ink:      #121A2B;
+  --nm-ink-2:    #4B5871;
+  --nm-ink-3:    #7B889F;
+  --nm-rule:     #C2CBDB;
+
+  /* ── the single accent (Y2K blue doubling as the modernist red) ── */
+  --nm-accent:   #1B44D8;
+  --nm-glow:     #4FA8FF;
+
+  /* ── Y2K chrome: light → silver → shadow → light ── */
+  --chrome: linear-gradient(#FFFFFF, #C6D2E4 42%, #5D7192 52%, #F0F5FC);
+
+  --sans:"IBM Plex Sans","Segoe UI",system-ui,sans-serif;
+  --my:"Noto Sans Myanmar","Myanmar Text","Padauk","Pyidaungsu",sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,"Cascadia Mono",Consolas,monospace;
+  --serif:"Instrument Serif",Georgia,"Times New Roman",serif;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --nm-ground: #1B2130;
+    --nm-sunk:   #161B28;
+    --nm-lo:     #10141E;
+    --nm-hi:     #262E41;
+    --nm-ink:    #E8EDF7;
+    --nm-ink-2:  #A2AEC4;
+    --nm-ink-3:  #75819A;
+    --nm-rule:   #2E3648;
+    --nm-accent: #7FA6FF;
+    --nm-glow:   #4FA8FF;
+    --chrome: linear-gradient(#FFFFFF, #A8B8D2 40%, #46577A 52%, #DCE6F6);
+  }
+}
+:root[data-theme="dark"] {
+  --nm-ground: #1B2130; --nm-sunk: #161B28; --nm-lo: #10141E; --nm-hi: #262E41;
+  --nm-ink: #E8EDF7; --nm-ink-2: #A2AEC4; --nm-ink-3: #75819A; --nm-rule: #2E3648;
+  --nm-accent: #7FA6FF; --nm-glow: #4FA8FF;
+  --chrome: linear-gradient(#FFFFFF, #A8B8D2 40%, #46577A 52%, #DCE6F6);
+}
+
+/* Expose the runtime variables to Tailwind. `inline` keeps the var()
+   in the generated utility, so bg-ground / text-ink follow the theme. */
+@theme inline {
+  --color-ground:  var(--nm-ground);
+  --color-sunk:    var(--nm-sunk);
+  --color-ink:     var(--nm-ink);
+  --color-ink-2:   var(--nm-ink-2);
+  --color-ink-3:   var(--nm-ink-3);
+  --color-rule:    var(--nm-rule);
+  --color-accent:  var(--nm-accent);
+
+  --font-sans:  var(--sans);
+  --font-mono:  var(--mono);
+  --font-serif: var(--serif);
+  --font-my:    var(--my);
+}
+
+@layer base {
+  body {
+    background: var(--nm-ground);
+    color: var(--nm-ink);
+    font: 400 15px/1.6 var(--sans);
+    -webkit-font-smoothing: antialiased;
+  }
+  :focus-visible {
+    outline: 2px solid var(--nm-accent);
+    outline-offset: 3px;
+    border-radius: 3px;
+  }
+}
+
+@layer components {
+  /* ── Neumorphism ────────────────────────────────────────────────
+     Extruded from the ground, never floated above it. Radius stays
+     moderate so Modernism's grid still reads through the softness. */
+  .nm-raise {
+    background: var(--nm-ground);
+    border-radius: 18px;
+    box-shadow: 7px 7px 15px var(--nm-lo), -7px -7px 15px var(--nm-hi);
+  }
+  .nm-raise-sm {
+    background: var(--nm-ground);
+    border-radius: 12px;
+    box-shadow: 4px 4px 9px var(--nm-lo), -4px -4px 9px var(--nm-hi);
+  }
+  .nm-sink {
+    background: var(--nm-sunk);
+    border-radius: 14px;
+    box-shadow: inset 4px 4px 9px var(--nm-lo), inset -4px -4px 9px var(--nm-hi);
+  }
+  /* The press. Neumorphism's one genuine advantage: the affordance
+     inverts, so the control reports its own state. */
+  .nm-press {
+    box-shadow: inset 5px 5px 10px var(--nm-lo), inset -5px -5px 10px var(--nm-hi);
+  }
+  .nm-lift {
+    transition: box-shadow .22s ease, transform .22s ease;
+  }
+  .nm-lift:hover {
+    transform: translateY(-3px);
+    box-shadow: 10px 10px 22px var(--nm-lo), -10px -10px 22px var(--nm-hi);
+  }
+  .nm-lift:active {
+    transform: translateY(0);
+    box-shadow: inset 5px 5px 11px var(--nm-lo), inset -5px -5px 11px var(--nm-hi);
+  }
+
+  /* ── Y2K ────────────────────────────────────────────────────────
+     Chrome type and bevelled gloss on the active controls. Used sparingly:
+     a couple of accents on the page, not thirty. */
+  .chrome {
+    background: var(--chrome);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    filter: drop-shadow(0 1px 0 var(--nm-hi)) drop-shadow(0 3px 5px rgba(12,26,54,.35));
+  }
+  .y2k-gloss::before {
+    content: "";
+    position: absolute;
+    inset: 2px 2px 52% 2px;
+    border-radius: inherit;
+    background: linear-gradient(rgba(255,255,255,.85), rgba(255,255,255,.05));
+    pointer-events: none;
+  }
+
+  /* ── Modernism ──────────────────────────────────────────────────
+     Mono labels in caps, a hairline under every section head, numerals
+     that line up in a column. The discipline the other two lack. */
+  .label {
+    font: 500 10px/1 var(--mono);
+    letter-spacing: .16em;
+    text-transform: uppercase;
+    color: var(--nm-accent);
+  }
+  .label-my {
+    font: 500 12px/1.5 var(--my);
+    letter-spacing: 0;
+    text-transform: none;
+  }
+  .num { font-variant-numeric: tabular-nums; }
+}
+
+/* Burmese needs more leading and no letter-spacing tricks; the shell's
+   mono/uppercase treatments are latin-only and get switched off here. */
+.my { font-family: var(--my); line-height: 1.85; letter-spacing: 0; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { transition: none !important; animation: none !important; }
+  .nm-lift:hover { transform: none; }
+}

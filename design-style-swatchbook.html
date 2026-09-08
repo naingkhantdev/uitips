@@ -1,0 +1,1017 @@
+<title>Design Style Swatchbook</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&family=Noto+Sans+Myanmar:wght@400;500;600&display=swap">
+<style>
+/* ─── shell tokens ─────────────────────────────────────────────── */
+:root{
+  --sans:"IBM Plex Sans","Segoe UI",system-ui,sans-serif;
+  --my:"Noto Sans Myanmar","Myanmar Text","Padauk","Pyidaungsu",sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,"Cascadia Mono",Consolas,monospace;
+  --serif:"Instrument Serif",Georgia,"Times New Roman",serif;
+
+  --ground:#E8EAEE;
+  --surface:#FCFCFD;
+  --surface-2:#F1F3F6;
+  --ink:#12141A;
+  --ink-2:#565D6A;
+  --ink-3:#858C99;
+  --rule:#CDD2DA;
+  --rule-soft:#DFE3E9;
+  --accent:#1B36C8;
+  --accent-soft:#E3E7FB;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --ground:#101217;
+    --surface:#191C22;
+    --surface-2:#20242C;
+    --ink:#EDEFF4;
+    --ink-2:#A0A8B5;
+    --ink-3:#79808D;
+    --rule:#2B303A;
+    --rule-soft:#232830;
+    --accent:#93A6FF;
+    --accent-soft:#1E2440;
+  }
+}
+:root[data-theme="dark"]{
+  --ground:#101217;
+  --surface:#191C22;
+  --surface-2:#20242C;
+  --ink:#EDEFF4;
+  --ink-2:#A0A8B5;
+  --ink-3:#79808D;
+  --rule:#2B303A;
+  --rule-soft:#232830;
+  --accent:#93A6FF;
+  --accent-soft:#1E2440;
+}
+
+*{box-sizing:border-box}
+body{
+  background:var(--ground);
+  color:var(--ink);
+  font:400 15px/1.6 var(--sans);
+  -webkit-font-smoothing:antialiased;
+}
+.wrap{max-width:1200px;margin:0 auto;padding:0 24px 96px}
+a{color:var(--accent)}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:2px}
+
+/* ─── masthead ─────────────────────────────────────────────────── */
+.masthead{padding:56px 0 34px;border-bottom:1px solid var(--rule)}
+.kicker{
+  font:500 11px/1 var(--mono);letter-spacing:.18em;text-transform:uppercase;
+  color:var(--accent);margin:0 0 20px;display:flex;gap:14px;align-items:center;flex-wrap:wrap;
+}
+.kicker span{color:var(--ink-3)}
+h1{
+  font:400 clamp(42px,7vw,76px)/0.98 var(--serif);
+  letter-spacing:-.015em;margin:0;text-wrap:balance;
+}
+.lede{
+  margin:22px 0 0;max-width:60ch;color:var(--ink-2);font-size:16px;
+}
+.lede strong{color:var(--ink);font-weight:600}
+.anatomy{
+  margin-top:30px;display:flex;gap:8px 26px;flex-wrap:wrap;
+  font:400 12px/1.5 var(--mono);color:var(--ink-3);
+}
+.anatomy b{color:var(--ink-2);font-weight:500}
+
+/* ─── section heads ────────────────────────────────────────────── */
+section{padding-top:60px}
+.sec-head{
+  display:flex;align-items:baseline;gap:16px;flex-wrap:wrap;
+  padding-bottom:8px;margin-bottom:24px;border-bottom:1px solid var(--rule);
+}
+.sec-head h2{
+  font:400 30px/1.1 var(--serif);margin:0;letter-spacing:-.01em;
+}
+.sec-head .count{
+  font:500 11px/1 var(--mono);letter-spacing:.14em;text-transform:uppercase;
+  color:var(--ink-3);font-variant-numeric:tabular-nums;
+}
+.sec-head p{margin:0;color:var(--ink-2);font-size:14px;max-width:52ch;flex:1 1 300px}
+
+/* ─── specimen grid ────────────────────────────────────────────── */
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(258px,1fr));gap:22px}
+.card{
+  background:var(--surface);border:1px solid var(--rule-soft);
+  display:flex;flex-direction:column;overflow:hidden;
+  transition:border-color .18s ease, transform .18s ease;
+}
+.card:hover{border-color:var(--rule);transform:translateY(-2px)}
+.meta{padding:15px 16px 17px;display:flex;flex-direction:column;gap:7px;flex:1}
+.meta-top{display:flex;align-items:baseline;justify-content:space-between;gap:10px}
+.meta h3{font:600 15px/1.2 var(--sans);margin:0;letter-spacing:-.01em}
+.era{
+  font:400 10px/1 var(--mono);color:var(--ink-3);
+  font-variant-numeric:tabular-nums;white-space:nowrap;letter-spacing:.02em;
+}
+.desc{margin:0;font-size:13.5px;line-height:1.5;color:var(--ink-2)}
+.tell{
+  margin:2px 0 0;font:400 11.5px/1.45 var(--mono);color:var(--ink-3);
+  padding-top:9px;border-top:1px dashed var(--rule-soft);
+}
+.tell b{color:var(--accent);font-weight:500;letter-spacing:.08em;text-transform:uppercase;font-size:10px}
+
+/* ─── specimen frame (self-contained colour worlds) ────────────── */
+.swatch{
+  position:relative;height:176px;overflow:hidden;padding:20px;
+  display:flex;align-items:center;justify-content:flex-start;
+  border-bottom:1px solid var(--rule-soft);
+  background:#ffffff;color:#111111;
+}
+.mini{position:relative;z-index:3;display:flex;flex-direction:column;align-items:flex-start;gap:7px;width:100%}
+.eye{font:500 9px/1 var(--mono);letter-spacing:.18em;text-transform:uppercase;opacity:.75}
+.ttl{font:600 27px/1 var(--sans);letter-spacing:-.02em}
+.sub{font:400 11px/1.4 var(--sans);opacity:.8}
+.btn{
+  font:500 10px/1 var(--sans);letter-spacing:.05em;text-transform:uppercase;
+  padding:8px 14px;margin-top:5px;border:1px solid currentColor;
+  background:transparent;color:inherit;display:inline-block;
+}
+.deco{position:absolute;display:block;z-index:1;pointer-events:none}
+
+/* I. attitudes ------------------------------------------------- */
+.sw-trad{background:#F6EFE0;color:#3A2618;justify-content:center;text-align:center}
+.sw-trad .mini{align-items:center;gap:9px;padding:14px 10px;border-top:3px double #A9853F;border-bottom:3px double #A9853F}
+.sw-trad .eye{color:#A9853F;letter-spacing:.3em}
+.sw-trad .ttl{font:400 34px/1 var(--serif);letter-spacing:.01em}
+.sw-trad .sub{font-style:italic;font-family:var(--serif);font-size:14px}
+.sw-trad .btn{border-color:#A9853F;color:#7A5E2A;letter-spacing:.22em;padding:6px 16px}
+
+.sw-min{background:#FFFFFF;color:#0A0A0A;align-items:flex-start;padding:22px}
+.sw-min .mini{gap:0}
+.sw-min .eye{opacity:.35;letter-spacing:.24em}
+.sw-min .ttl{font-weight:400;font-size:22px;margin-top:58px}
+.sw-min .sub{opacity:.4;font-size:10.5px;margin-top:4px}
+.sw-min .btn{border:0;padding:0;margin-top:14px;text-transform:none;letter-spacing:0;font-size:10.5px;border-bottom:1px solid #0A0A0A;padding-bottom:2px}
+
+.sw-max{background:#2B0A3D;color:#FFF2B8}
+.sw-max .deco.a{inset:0;background:
+  radial-gradient(circle at 12% 18%,#FF3D9A 0,transparent 32%),
+  radial-gradient(circle at 88% 22%,#00E5B0 0,transparent 30%),
+  radial-gradient(circle at 72% 92%,#FFB000 0,transparent 36%),
+  repeating-linear-gradient(45deg,rgba(255,255,255,.09) 0 6px,transparent 6px 12px)}
+.sw-max .mini{transform:rotate(-3deg)}
+.sw-max .ttl{font:400 40px/.9 var(--serif);text-shadow:3px 3px 0 #FF3D9A,6px 6px 0 #00C2FF}
+.sw-max .eye{background:#FFB000;color:#2B0A3D;padding:3px 7px}
+.sw-max .sub{font-weight:600}
+.sw-max .btn{background:#FF3D9A;border-color:#FFF2B8;border-width:2px;color:#fff;font-weight:700}
+
+.sw-brut{background:#FFFFFF;color:#000;font-family:var(--mono)}
+.sw-brut .mini{border:3px solid #000;padding:12px;gap:6px}
+.sw-brut .eye{font-family:var(--mono);letter-spacing:.05em}
+.sw-brut .ttl{font:500 26px/1 var(--mono);letter-spacing:-.03em}
+.sw-brut .sub{font-family:var(--mono);color:#0000EE;text-decoration:underline}
+.sw-brut .btn{border:3px solid #000;border-radius:0;background:#fff;font-family:var(--mono);text-transform:none;letter-spacing:0}
+
+.sw-mod{background:#E7E4DE;color:#111}
+.sw-mod .deco.a{width:46px;height:46px;background:#D93A2B;right:20px;top:20px}
+.sw-mod .mini{gap:5px}
+.sw-mod .eye{letter-spacing:.2em}
+.sw-mod .ttl{font-weight:500;font-size:30px;letter-spacing:-.035em}
+.sw-mod .btn{border:0;border-top:2px solid #111;padding:8px 0 0;width:96px;border-radius:0}
+
+/* II. movements ------------------------------------------------ */
+.sw-nouv{background:#1D3A2E;color:#EEDDB4;justify-content:center;text-align:center}
+.sw-nouv .deco.a{inset:14px;border:1px solid #C4A15A;border-radius:60% 8% 60% 8%/8% 60% 8% 60%}
+.sw-nouv .mini{align-items:center;gap:8px}
+.sw-nouv .ttl{font:italic 400 34px/1 var(--serif);color:#E7C877}
+.sw-nouv .eye{letter-spacing:.34em;color:#C4A15A}
+.sw-nouv .btn{border-radius:40% 8% 40% 8%/8% 40% 8% 40%;border-color:#C4A15A;color:#E7C877;padding:7px 18px}
+
+.sw-deco{background:#0C0C0E;color:#E9CE7B;justify-content:center;text-align:center}
+.sw-deco .deco.a{left:0;right:0;top:16px;height:22px;background:
+  repeating-linear-gradient(90deg,#C9A227 0 2px,transparent 2px 9px);
+  -webkit-mask-image:linear-gradient(#000,transparent);mask-image:linear-gradient(#000,transparent)}
+.sw-deco .deco.b{left:0;right:0;bottom:16px;height:22px;background:
+  repeating-linear-gradient(90deg,#C9A227 0 2px,transparent 2px 9px);
+  -webkit-mask-image:linear-gradient(transparent,#000);mask-image:linear-gradient(transparent,#000)}
+.sw-deco .mini{align-items:center;gap:9px}
+.sw-deco .ttl{font-weight:500;font-size:26px;letter-spacing:.3em;text-transform:uppercase;text-indent:.3em}
+.sw-deco .eye{letter-spacing:.4em;text-indent:.4em}
+.sw-deco .sub{letter-spacing:.12em;text-transform:uppercase;font-size:9px}
+.sw-deco .btn{border-color:#C9A227;letter-spacing:.24em;padding:6px 16px}
+
+.sw-bau{background:#EFEBE2;color:#141414}
+.sw-bau .deco.a{width:54px;height:54px;border-radius:50%;background:#1B4FBE;right:-12px;top:16px}
+.sw-bau .deco.b{width:0;height:0;border-left:26px solid transparent;border-right:26px solid transparent;border-bottom:44px solid #E4C000;right:34px;bottom:16px}
+.sw-bau .deco.c{width:34px;height:34px;background:#D62828;left:-8px;bottom:-8px}
+.sw-bau .ttl{font-weight:700;font-size:27px;text-transform:uppercase;letter-spacing:-.01em}
+.sw-bau .eye{letter-spacing:.2em}
+.sw-bau .btn{background:#141414;color:#EFEBE2;border-color:#141414}
+
+.sw-const{background:#EDE7DD;color:#111;overflow:hidden}
+.sw-const .deco.a{width:280px;height:66px;background:#C8102E;left:-40px;top:26px;transform:rotate(-14deg)}
+.sw-const .deco.b{width:280px;height:8px;background:#111;left:-40px;top:104px;transform:rotate(-14deg)}
+.sw-const .mini{transform:rotate(-14deg);align-items:flex-start;padding-left:6px}
+.sw-const .ttl{font:400 34px/.9 "Anton",Impact,var(--sans);text-transform:uppercase;letter-spacing:.01em;color:#FBF7F0}
+.sw-const .eye{color:#111;background:#E4C000;padding:3px 6px}
+.sw-const .sub{color:#FBF7F0;font-weight:600}
+.sw-const .btn{border-color:#111;color:#111;background:#FBF7F0}
+
+.sw-stijl{background:#FAF9F5;color:#111;padding:0}
+.sw-stijl .deco.a{left:0;right:0;top:52px;height:7px;background:#111}
+.sw-stijl .deco.b{top:0;bottom:0;left:126px;width:7px;background:#111}
+.sw-stijl .deco.c{right:0;top:0;width:80px;height:52px;background:#D62828}
+.sw-stijl .deco.d{left:0;bottom:0;width:126px;height:46px;background:#1B4FBE}
+.sw-stijl .deco.e{right:0;bottom:0;width:52px;height:40px;background:#E4C000}
+.sw-stijl .mini{padding:64px 0 0 20px;gap:5px}
+.sw-stijl .ttl{font-weight:700;font-size:22px}
+.sw-stijl .btn{border-width:2px;padding:5px 10px}
+
+.sw-swiss{background:#FFFFFF;color:#111;align-items:flex-start;padding:20px}
+.sw-swiss .deco.a{left:20px;right:20px;top:44px;height:1px;background:#111}
+.sw-swiss .mini{gap:0;padding-left:74px}
+.sw-swiss .eye{position:absolute;left:-74px;top:4px;color:#D62828;letter-spacing:.1em}
+.sw-swiss .ttl{font-weight:500;font-size:25px;letter-spacing:-.04em;margin-top:34px}
+.sw-swiss .sub{font-size:10.5px;max-width:22ch;margin-top:6px;line-height:1.35}
+.sw-swiss .btn{border:0;padding:0;margin-top:12px;color:#D62828;text-transform:none;letter-spacing:0;font-size:11px}
+
+.sw-mcm{background:#F0E5D0;color:#2C2A24}
+.sw-mcm .deco.a{width:96px;height:96px;right:-24px;bottom:-26px;background:#2E6E6B;border-radius:60% 40% 55% 45%/50% 55% 45% 50%}
+.sw-mcm .deco.b{width:52px;height:52px;right:56px;top:18px;background:
+  conic-gradient(from 0deg,#D8873D 0 8deg,transparent 8deg 45deg,#D8873D 45deg 53deg,transparent 53deg 90deg,
+  #D8873D 90deg 98deg,transparent 98deg 135deg,#D8873D 135deg 143deg,transparent 143deg 180deg,
+  #D8873D 180deg 188deg,transparent 188deg 225deg,#D8873D 225deg 233deg,transparent 233deg 270deg,
+  #D8873D 270deg 278deg,transparent 278deg 315deg,#D8873D 315deg 323deg,transparent 323deg 360deg)}
+.sw-mcm .ttl{font-weight:400;font-size:29px;letter-spacing:.01em}
+.sw-mcm .eye{color:#B4562A;letter-spacing:.22em}
+.sw-mcm .btn{border-radius:20px;border-color:#2E6E6B;color:#2E6E6B;padding:7px 16px}
+
+.sw-pop{background:#FFE500;color:#111}
+.sw-pop .deco.a{inset:0;background-image:radial-gradient(#E4002B 1.4px,transparent 1.5px);background-size:8px 8px;opacity:.55}
+.sw-pop .mini{gap:6px}
+.sw-pop .ttl{font:400 38px/.92 "Anton",Impact,var(--sans);text-transform:uppercase;color:#fff;
+  -webkit-text-stroke:2px #111;paint-order:stroke fill;text-shadow:4px 4px 0 #E4002B}
+.sw-pop .eye{background:#111;color:#FFE500;padding:3px 7px}
+.sw-pop .sub{font-weight:700;font-style:italic}
+.sw-pop .btn{background:#E4002B;color:#fff;border:2px solid #111;font-weight:700}
+
+.sw-psy{background:#2A0140;color:#FFF}
+.sw-psy .deco.a{inset:-20%;background:conic-gradient(from 20deg,#FF2D95,#FFD400,#00D1B2,#7A2DFF,#FF2D95);filter:blur(22px);opacity:.85}
+.sw-psy .mini{align-items:center;text-align:center}
+.sw-psy .ttl{font:400 40px/.9 var(--serif);letter-spacing:.04em;transform:skewY(-4deg) scaleY(1.25);
+  color:#FFF6C9;text-shadow:0 0 14px #FF2D95,2px 3px 0 #7A2DFF}
+.sw-psy .eye{letter-spacing:.34em;color:#2A0140;background:#FFD400;padding:3px 8px;border-radius:12px}
+.sw-psy .sub{font-weight:600;text-shadow:0 1px 6px rgba(0,0,0,.5)}
+.sw-psy .btn{border-radius:20px;border-width:2px;border-color:#FFD400;color:#FFF6C9}
+
+.sw-mem{background:#F7F3EC;color:#111}
+.sw-mem .deco.a{width:70px;height:70px;background:#00C2CE;border-radius:50%;right:-16px;top:-14px;border:3px solid #111}
+.sw-mem .deco.b{width:0;height:0;border-left:20px solid transparent;border-right:20px solid transparent;border-bottom:34px solid #FF7BB0;right:74px;bottom:16px;transform:rotate(16deg)}
+.sw-mem .deco.c{left:-6px;bottom:14px;width:92px;height:26px;
+  background:repeating-linear-gradient(90deg,#F2C230 0 9px,#111 9px 12px)}
+.sw-mem .mini{gap:6px}
+.sw-mem .ttl{font-weight:700;font-size:28px;color:#111;text-shadow:3px 3px 0 #00C2CE}
+.sw-mem .eye{background:#FF7BB0;padding:3px 7px;border:2px solid #111}
+.sw-mem .btn{border:2px solid #111;background:#F2C230;border-radius:14px 2px 14px 2px}
+
+.sw-grunge{background:#26221E;color:#DCD4C6}
+.sw-grunge .deco.a{inset:0;background:
+  radial-gradient(ellipse at 22% 30%,rgba(0,0,0,.6) 0,transparent 45%),
+  radial-gradient(ellipse at 78% 74%,rgba(0,0,0,.55) 0,transparent 42%),
+  repeating-linear-gradient(102deg,rgba(220,212,198,.05) 0 2px,transparent 2px 5px),
+  repeating-linear-gradient(8deg,rgba(0,0,0,.25) 0 1px,transparent 1px 4px)}
+.sw-grunge .mini{gap:5px}
+.sw-grunge .ttl{font-weight:700;font-size:30px;letter-spacing:-.03em;color:#E8E1D2;
+  text-shadow:1px 0 0 #8C1F14,-1px 1px 0 rgba(0,0,0,.8);transform:rotate(-1.5deg)}
+.sw-grunge .eye{color:#B4A992;letter-spacing:.24em}
+.sw-grunge .sub{color:#A79C86}
+.sw-grunge .btn{border-color:#8C1F14;color:#D9A899;
+  clip-path:polygon(2% 8%,98% 0,100% 88%,4% 100%,0 40%)}
+
+.sw-y2k{background:linear-gradient(#DCE6F2,#AFC0D6);color:#0B2A5B}
+.sw-y2k .deco.a{width:110px;height:110px;border-radius:50%;right:-26px;top:-24px;
+  background:radial-gradient(circle at 34% 28%,#FFFFFF,#9FD2FF 40%,#2A6FD6 78%,#0B3E8C);
+  box-shadow:0 6px 14px rgba(11,42,91,.35)}
+.sw-y2k .ttl{font-weight:700;font-size:30px;letter-spacing:-.02em;
+  background:linear-gradient(#FFFFFF,#B9C6D6 44%,#5E7591 52%,#E8EEF6);
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+  filter:drop-shadow(0 1px 0 rgba(255,255,255,.9)) drop-shadow(0 2px 3px rgba(11,42,91,.5))}
+.sw-y2k .eye{color:#2A6FD6}
+.sw-y2k .btn{border-radius:20px;border-color:#8FB0D8;color:#0B2A5B;
+  background:linear-gradient(#FFFFFF,#C8D8EC);box-shadow:0 2px 5px rgba(11,42,91,.28),inset 0 1px 0 #fff}
+
+.sw-vapor{background:linear-gradient(#1B0538 0%,#4A1063 46%,#B4257E 66%,#FF6BAA 100%);color:#F7E6FF;overflow:hidden}
+.sw-vapor .deco.a{left:-40%;right:-40%;bottom:0;height:74px;
+  background:repeating-linear-gradient(90deg,rgba(0,246,255,.75) 0 1px,transparent 1px 26px),
+             repeating-linear-gradient(0deg,rgba(0,246,255,.75) 0 1px,transparent 1px 13px);
+  transform:perspective(90px) rotateX(58deg);transform-origin:bottom}
+.sw-vapor .deco.b{width:74px;height:74px;border-radius:50%;right:22px;top:14px;
+  background:linear-gradient(#FFE47A,#FF5FA2);opacity:.9}
+.sw-vapor .ttl{font-weight:700;font-size:28px;letter-spacing:.16em;text-transform:uppercase;
+  color:#FFFFFF;text-shadow:2px 0 0 #00F6FF,-2px 0 0 #FF2D95}
+.sw-vapor .eye{letter-spacing:.4em;color:#00F6FF}
+.sw-vapor .btn{border-color:#00F6FF;color:#00F6FF;background:rgba(27,5,56,.5)}
+
+/* III. digital -------------------------------------------------- */
+.sw-skeu{background:
+  repeating-linear-gradient(45deg,rgba(0,0,0,.045) 0 2px,transparent 2px 4px),
+  linear-gradient(#5E4B36,#4A3A28);color:#F3E9D8}
+.sw-skeu .mini{background:linear-gradient(#FBF6EA,#E7DCC6);border:1px solid #9C8664;
+  border-radius:7px;padding:13px;color:#3A2E1E;gap:6px;
+  box-shadow:0 3px 6px rgba(0,0,0,.45),inset 0 1px 0 #fff}
+.sw-skeu .ttl{font-weight:700;font-size:23px;color:#3A2E1E;text-shadow:0 1px 0 rgba(255,255,255,.85)}
+.sw-skeu .eye{color:#7A6647}
+.sw-skeu .btn{border:1px solid #2C5B96;border-radius:5px;color:#fff;
+  background:linear-gradient(#7DB2EC,#3574C2 50%,#2A64AE 51%,#1F4F92);
+  box-shadow:0 2px 3px rgba(0,0,0,.4),inset 0 1px 0 rgba(255,255,255,.55);
+  text-shadow:0 -1px 0 rgba(0,0,0,.4)}
+
+.sw-flat{background:#2D9CDB;color:#FFFFFF}
+.sw-flat .deco.a{width:64px;height:64px;background:#F2C94C;right:18px;bottom:18px}
+.sw-flat .ttl{font-weight:600;font-size:28px}
+.sw-flat .btn{background:#EB5757;border:0;color:#fff;padding:10px 16px;border-radius:0}
+
+.sw-mat{background:#F5F3F7;color:#1D1B20}
+.sw-mat .mini{background:#FFFFFF;border-radius:12px;padding:14px;gap:6px;
+  box-shadow:0 1px 2px rgba(0,0,0,.14),0 4px 10px rgba(0,0,0,.10)}
+.sw-mat .deco.a{width:44px;height:44px;border-radius:50%;background:#6750A4;right:18px;bottom:16px;
+  box-shadow:0 4px 10px rgba(103,80,164,.45);z-index:4}
+.sw-mat .deco.a::after{content:"+";position:absolute;inset:0;display:grid;place-items:center;
+  color:#fff;font:400 22px/1 var(--sans)}
+.sw-mat .eye{color:#6750A4;letter-spacing:.14em}
+.sw-mat .ttl{font-weight:500;font-size:24px}
+.sw-mat .btn{background:#6750A4;border:0;color:#fff;border-radius:20px;padding:9px 18px}
+
+.sw-neu{background:#E4E8EF;color:#4A5265}
+.sw-neu .mini{background:#E4E8EF;border-radius:16px;padding:14px;gap:7px;
+  box-shadow:7px 7px 14px #C3C8D2,-7px -7px 14px #FFFFFF}
+.sw-neu .ttl{font-weight:600;font-size:23px;color:#3C4356}
+.sw-neu .eye{color:#98A0B0}
+.sw-neu .sub{color:#8B93A4}
+.sw-neu .btn{border:0;border-radius:11px;background:#E4E8EF;color:#5B647A;
+  box-shadow:4px 4px 8px #C3C8D2,-4px -4px 8px #FFFFFF}
+
+.sw-glass{background:linear-gradient(135deg,#3A1C71,#D76D77 52%,#FFAF7B);color:#FFFFFF}
+.sw-glass .deco.a{width:120px;height:120px;border-radius:50%;background:#00E0C6;filter:blur(26px);left:-20px;bottom:-30px;opacity:.85}
+.sw-glass .deco.b{width:96px;height:96px;border-radius:50%;background:#FFE066;filter:blur(24px);right:10px;top:-24px;opacity:.8}
+.sw-glass .mini{background:rgba(255,255,255,.18);backdrop-filter:blur(11px);-webkit-backdrop-filter:blur(11px);
+  border:1px solid rgba(255,255,255,.42);border-radius:14px;padding:14px;gap:6px;
+  box-shadow:0 8px 24px rgba(20,0,40,.25)}
+.sw-glass .ttl{font-weight:600;font-size:24px}
+.sw-glass .btn{border-radius:9px;border-color:rgba(255,255,255,.6);background:rgba(255,255,255,.22)}
+
+.sw-clay{background:#EDE6FB;color:#4A3A78}
+.sw-clay .mini{background:#DCCDFA;border-radius:26px;padding:16px;gap:7px;
+  box-shadow:0 12px 22px rgba(108,74,182,.28),inset -6px -6px 12px rgba(139,102,222,.4),inset 7px 7px 14px rgba(255,255,255,.9)}
+.sw-clay .ttl{font-weight:700;font-size:24px;color:#4A2F8C}
+.sw-clay .eye{color:#8067C0}
+.sw-clay .btn{border:0;border-radius:18px;background:#FF9D7E;color:#5A2410;padding:9px 18px;
+  box-shadow:0 6px 12px rgba(214,110,70,.4),inset -3px -3px 7px rgba(216,116,76,.5),inset 3px 3px 7px rgba(255,255,255,.75)}
+
+.sw-nbrut{background:#FFE45C;color:#111}
+.sw-nbrut .mini{background:#FFFFFF;border:3px solid #111;border-radius:6px;padding:13px;gap:6px;
+  box-shadow:6px 6px 0 #111}
+.sw-nbrut .deco.a{width:38px;height:38px;border:3px solid #111;border-radius:50%;background:#54E0C6;right:16px;bottom:14px;box-shadow:4px 4px 0 #111}
+.sw-nbrut .ttl{font-weight:700;font-size:25px;letter-spacing:-.03em}
+.sw-nbrut .btn{border:3px solid #111;border-radius:5px;background:#FF7A5C;color:#111;font-weight:700;box-shadow:3px 3px 0 #111}
+
+.sw-bento{background:#F2F2F4;color:#18181B;padding:14px}
+.sw-bento .mini{display:grid;grid-template-columns:1.55fr 1fr;grid-template-rows:auto auto auto;gap:7px;width:100%}
+.sw-bento .eye{grid-column:1/2;background:#FFFFFF;border-radius:11px;padding:9px 10px;color:#71717A}
+.sw-bento .ttl{grid-column:1/2;background:#18181B;color:#FAFAFA;border-radius:13px;padding:12px 12px;font-size:21px;font-weight:600}
+.sw-bento .sub{grid-column:2/3;grid-row:1/3;background:#FFFFFF;border-radius:13px;padding:11px;display:flex;align-items:flex-end;opacity:1;color:#52525B}
+.sw-bento .btn{grid-column:1/3;margin:0;border:0;background:#FFFFFF;border-radius:11px;padding:11px;text-align:center;color:#18181B}
+
+.sw-dark{background:#0D0F14;color:#E6E8EE}
+.sw-dark .mini{background:#161A21;border:1px solid #262C36;border-radius:10px;padding:14px;gap:7px}
+.sw-dark .deco.a{width:150px;height:150px;border-radius:50%;background:#3B82F6;filter:blur(60px);opacity:.22;right:-40px;top:-50px}
+.sw-dark .eye{color:#7C8494;letter-spacing:.16em}
+.sw-dark .ttl{font-weight:600;font-size:24px;color:#F3F5F9}
+.sw-dark .sub{color:#8A93A4}
+.sw-dark .btn{border:0;background:#3B82F6;color:#fff;border-radius:7px;padding:9px 16px}
+
+.sw-aurora{background:#0B0A14;color:#F0EDFB}
+.sw-aurora .deco.a{width:170px;height:170px;border-radius:50%;background:#7C3AED;filter:blur(46px);left:-40px;top:-56px;opacity:.85}
+.sw-aurora .deco.b{width:150px;height:150px;border-radius:50%;background:#EC4899;filter:blur(46px);right:-30px;bottom:-56px;opacity:.7}
+.sw-aurora .deco.c{width:120px;height:120px;border-radius:50%;background:#22D3EE;filter:blur(44px);left:44%;bottom:-40px;opacity:.55}
+.sw-aurora .ttl{font-weight:600;font-size:27px;letter-spacing:-.02em}
+.sw-aurora .eye{color:#C4B5FD;letter-spacing:.2em}
+.sw-aurora .btn{border-radius:22px;border-color:rgba(240,237,251,.45);background:rgba(255,255,255,.08)}
+
+.sw-iso{background:#EEF1F7;color:#2C3145}
+.sw-iso .deco.a{width:78px;height:78px;right:16px;bottom:18px;
+  clip-path:polygon(50% 0,100% 25%,100% 75%,50% 100%,0 75%,0 25%);
+  background:conic-gradient(from 90deg at 50% 50%,#C4B5FD 0 120deg,#8B7BE8 0 240deg,#6D5BD0 0 360deg)}
+.sw-iso .deco.b{width:52px;height:52px;left:20px;bottom:-6px;opacity:.55;
+  clip-path:polygon(50% 0,100% 25%,100% 75%,50% 100%,0 75%,0 25%);
+  background:conic-gradient(from 90deg at 50% 50%,#A7F3D0 0 120deg,#5EEAD4 0 240deg,#2DD4BF 0 360deg)}
+.sw-iso .ttl{font-weight:600;font-size:25px}
+.sw-iso .eye{color:#6D5BD0;letter-spacing:.16em}
+.sw-iso .btn{border-radius:8px;border-color:#6D5BD0;color:#6D5BD0}
+
+.sw-illus{background:#FFF8F0;color:#3D2E22}
+.sw-illus .deco.a{width:132px;height:120px;right:-14px;top:16px;background:#FFD9A0;
+  border-radius:64% 36% 48% 52%/48% 60% 40% 52%}
+.sw-illus .deco.b{width:56px;height:56px;right:26px;top:52px;background:#5FBFA8;border-radius:50% 50% 46% 54%/56% 44% 56% 44%}
+.sw-illus .deco.c{width:22px;height:22px;left:16px;bottom:16px;background:#EF7C6B;border-radius:50%}
+.sw-illus .ttl{font-weight:700;font-size:26px;color:#3D2E22}
+.sw-illus .eye{color:#C2745A;letter-spacing:.16em}
+.sw-illus .btn{border-radius:22px;border-width:2px;border-color:#3D2E22;background:#FFD9A0}
+
+/* ─── chronology rail ──────────────────────────────────────────── */
+.rail-wrap{overflow-x:auto;padding-bottom:6px;margin-bottom:26px}
+.rail{
+  display:flex;gap:0;min-width:760px;position:relative;padding:16px 0 4px;
+  border-bottom:1px solid var(--rule);
+}
+.rail li{list-style:none;flex:1;position:relative;padding:0 0 16px}
+.rail li::after{
+  content:"";position:absolute;left:0;bottom:-4px;width:7px;height:7px;border-radius:50%;
+  background:var(--accent);
+}
+.rail .yr{display:block;font:500 12px/1 var(--mono);color:var(--ink);font-variant-numeric:tabular-nums}
+.rail .nm{display:block;font-size:11.5px;color:var(--ink-2);margin-top:4px;padding-right:8px}
+
+/* ─── method / vocabulary lists ────────────────────────────────── */
+.defs{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:0 44px}
+.defs div{
+  display:grid;grid-template-columns:minmax(0,150px) 1fr;gap:16px;
+  padding:13px 0;border-top:1px solid var(--rule-soft);align-items:baseline;
+}
+.defs dt{font:600 13px/1.4 var(--sans);color:var(--ink);margin:0}
+.defs dd{margin:0;font-size:13.5px;line-height:1.5;color:var(--ink-2)}
+
+.vocab{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:2px 26px}
+.vocab div{padding:10px 0;border-top:1px solid var(--rule-soft)}
+.vocab b{display:block;font:500 12px/1.4 var(--mono);letter-spacing:.02em;color:var(--ink)}
+.vocab span{display:block;font-size:12.5px;line-height:1.45;color:var(--ink-3);margin-top:2px}
+
+.closer{
+  margin-top:64px;padding:26px 0 0;border-top:2px solid var(--ink);
+  display:flex;gap:26px;flex-wrap:wrap;align-items:flex-start;justify-content:space-between;
+}
+.closer p{margin:0;max-width:56ch;color:var(--ink-2);font-size:14px}
+.closer p b{color:var(--ink);font-weight:600}
+.closer .sig{font:400 12px/1.6 var(--mono);color:var(--ink-3);text-align:right}
+
+@media (max-width:560px){
+  .masthead{padding:38px 0 26px}
+  .wrap{padding:0 18px 64px}
+  .defs div{grid-template-columns:1fr;gap:4px}
+}
+@media (prefers-reduced-motion: reduce){
+  *{transition:none !important;animation:none !important}
+  .card:hover{transform:none}
+}
+
+/* ─── burmese typography ───────────────────────────────────────── */
+.my{font-family:var(--my);line-height:1.85}
+h1.my{font-family:var(--my);font-weight:600;font-size:clamp(28px,5vw,46px);line-height:1.45;letter-spacing:0}
+.sec-head h2.my{font-family:var(--my);font-weight:600;font-size:24px;line-height:1.5}
+.desc.my{font-size:14px;line-height:1.85}
+.meta h3.my{font-family:var(--my);font-weight:600;font-size:14.5px;line-height:1.55}
+.tell.my{font-family:var(--my);font-size:12.5px;line-height:1.8}
+.defs dt.my{font-family:var(--my);line-height:1.6}
+.defs dd.my,.vocab span.my{font-family:var(--my);line-height:1.8}
+.lede.my{font-family:var(--my);line-height:1.9;font-size:15px}
+
+/* ─── language switch ──────────────────────────────────────────── */
+.topbar{display:flex;justify-content:space-between;align-items:center;gap:16px;padding-top:22px;flex-wrap:wrap}
+.langs{display:inline-flex;border:1px solid var(--rule);background:var(--surface)}
+.langs button{
+  font:500 11px/1 var(--mono);letter-spacing:.1em;text-transform:uppercase;
+  padding:9px 14px;border:0;background:transparent;color:var(--ink-2);cursor:pointer;
+}
+.langs button + button{border-left:1px solid var(--rule);font-family:var(--my);letter-spacing:0;font-size:12px;text-transform:none}
+.langs button[aria-pressed="true"]{background:var(--ink);color:var(--ground)}
+.hint{font:400 11px/1.5 var(--mono);color:var(--ink-3)}
+
+/* ─── cards become buttons ─────────────────────────────────────── */
+button.card{
+  font:inherit;color:inherit;text-align:left;padding:0;cursor:pointer;
+  appearance:none;border-radius:0;width:100%;
+}
+button.card:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.open-cue{
+  margin-top:auto;padding-top:11px;display:flex;align-items:center;gap:6px;
+  font:500 10px/1 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--accent);
+}
+.open-cue.my{font-family:var(--my);letter-spacing:0;text-transform:none;font-size:12px}
+.open-cue::after{content:"→"}
+
+/* ─── detail sheet ─────────────────────────────────────────────── */
+.overlay{
+  position:fixed;inset:0;z-index:60;padding:18px;
+  background:rgba(8,10,14,.66);
+  display:flex;align-items:flex-start;justify-content:center;overflow-y:auto;
+}
+.overlay[hidden]{display:none}
+.sheet{
+  background:var(--surface);border:1px solid var(--rule);width:100%;max-width:580px;
+  margin:auto;box-shadow:0 24px 60px rgba(0,0,0,.4);
+}
+.sheet .swatch{height:212px;border-bottom:1px solid var(--rule-soft)}
+.sheet-body{padding:20px 22px 24px;display:flex;flex-direction:column;gap:16px}
+.sheet-head{display:flex;justify-content:space-between;align-items:flex-start;gap:14px}
+.sheet-head h3{margin:0;font:600 21px/1.25 var(--sans);letter-spacing:-.015em}
+.sheet-head .my-name{display:block;font:500 14px/1.6 var(--my);color:var(--ink-2);margin-top:5px}
+.sheet-head .era{font-size:11px;padding-top:6px}
+.blk{display:flex;flex-direction:column;gap:7px;padding-top:15px;border-top:1px solid var(--rule-soft)}
+.blk .lbl{font:500 10px/1 var(--mono);letter-spacing:.16em;text-transform:uppercase;color:var(--accent)}
+.blk .lbl.my{font-family:var(--my);letter-spacing:0;text-transform:none;font-size:12px}
+.blk p{margin:0;font-size:14px;line-height:1.6;color:var(--ink-2)}
+.blk p.my{font-family:var(--my);line-height:1.9;color:var(--ink);font-size:14px}
+.blk p.en{color:var(--ink-3);font-size:13px}
+.sheet-close{
+  display:block;width:100%;margin-top:4px;padding:12px;cursor:pointer;
+  background:var(--ink);color:var(--ground);border:0;
+  font:500 11px/1 var(--mono);letter-spacing:.14em;text-transform:uppercase;
+}
+.sheet-close.my{font-family:var(--my);letter-spacing:0;text-transform:none;font-size:13px}
+</style>
+
+<div class="wrap">
+
+  <div class="topbar">
+    <span class="hint my" id="hint">ကတ်တစ်ခုခုကို နှိပ်ရင် အသေးစိတ် ဖတ်လို့ရပါတယ်</span>
+    <div class="langs" role="group" aria-label="Language">
+      <button type="button" id="btn-en" aria-pressed="false">English</button>
+      <button type="button" id="btn-my" aria-pressed="true">မြန်မာ</button>
+    </div>
+  </div>
+
+  <header class="masthead">
+    <p class="kicker" id="kicker"></p>
+    <h1 id="pgtitle"></h1>
+    <p class="lede" id="lede"></p>
+    <p class="anatomy" id="anatomy"></p>
+  </header>
+
+  <main id="sections"></main>
+
+  <div class="closer" id="closer"></div>
+</div>
+
+<div class="overlay" id="ov" hidden>
+  <div class="sheet" role="dialog" aria-modal="true" aria-labelledby="sheet-title">
+    <div id="sheet-swatch"></div>
+    <div class="sheet-body" id="sheet-body"></div>
+  </div>
+</div>
+
+<script>
+var STYLES = [
+{g:0,c:"trad",d:[],eye:"Est. 1894",n:"Traditional",mn:"ရိုးရာပုံစံ",era:"pre-1900s",
+ e:"Ornament, symmetry and historical detail. Reads as trustworthy, established, formal.",
+ m:"အလှဆင်မှု၊ ညီညာမှုနဲ့ ရှေးဟောင်းအသွင်တွေကို သုံးတယ်။ ယုံကြည်စိတ်ချရပြီး တည်တံ့ခိုင်မြဲတဲ့ ခံစားချက်ကို ပေးတယ်။",
+ te:"Centred layout, serif type, gold or maroon, a decorative frame.",
+ tm:"အလယ်ဗဟိုချထားတဲ့ စာသား၊ serif ဖောင့်၊ ရွှေရောင်နဲ့ အနီညိုရောင်၊ အလှဆင်ဘောင်။",
+ we:"Law firms, banks, hotels, wedding invitations.",
+ wm:"ဥပဒေရုံး၊ ဘဏ်၊ ဟိုတယ်၊ မင်္ဂလာဆောင် ဖိတ်စာများ။"},
+
+{g:0,c:"min",d:[],eye:"01",n:"Minimalism",mn:"အနည်းဆုံးပုံစံ",era:"1960s onward",
+ e:"Remove until only the necessary is left. The empty space is the design, not leftover room.",
+ m:"မလိုအပ်တာတွေ အကုန်ဖြုတ်ပြီး လိုအပ်တာပဲ ကျန်အောင် လုပ်တဲ့ပုံစံ။ ဗလာနေရာ (white space) ဟာ ကျန်နေတာ မဟုတ်ဘဲ ဒီဇိုင်းရဲ့ အဓိက အစိတ်အပိုင်း ဖြစ်တယ်။",
+ te:"One accent at most, small type, enormous margins.",
+ tm:"အရောင်တစ်ရောင်ပဲ သုံးတယ်၊ စာလုံးသေးတယ်၊ ဘေးဘောင် နေရာလွတ် အများကြီး ချန်ထားတယ်။",
+ we:"Apple, Muji, photography portfolios.",
+ wm:"Apple, Muji ဘရန်းများ၊ ဓာတ်ပုံ portfolio ဆိုက်များ။"},
+
+{g:0,c:"max",d:["a"],eye:"More!",n:"Maximalism",mn:"အများဆုံးပုံစံ",era:"2010s onward",
+ e:"Deliberate excess. Layers, pattern and colour piled up until the page has a personality you cannot ignore.",
+ m:"တမင်တကာ များများစားစား ထည့်ထားတဲ့ပုံစံ။ အလွှာတွေ၊ ပုံစံတွေ၊ အရောင်တွေကို ထပ်ပြီး မမေ့နိုင်အောင် လုပ်ထားတယ်။",
+ te:"Clashing colour on purpose, texture behind everything, nothing left plain.",
+ tm:"အရောင်တွေ တမင် တိုက်စေတယ်၊ နောက်ခံမှာ texture ရှိတယ်၊ ဘယ်နေရာမှ ဗလာ မကျန်ဘူး။",
+ we:"Fashion, music posters, youth brands.",
+ wm:"ဖက်ရှင်၊ ဂီတပိုစတာ၊ လူငယ် ဘရန်းများ။"},
+
+{g:0,c:"brut",d:[],eye:"index.html",n:"Brutalism",mn:"အကြမ်းထည်ပုံစံ",era:"1950s / web 2014",
+ e:"Raw and unpolished on purpose - the structure left showing, like bare concrete. A reaction against over-designed pages.",
+ m:"အလှဆင်မှု လုံးဝမပါဘဲ အကြမ်းထည်အတိုင်း ပြထားတဲ့ပုံစံ။ ဒီဇိုင်း ဆန်လွန်းတဲ့ ဝဘ်ဆိုက်တွေကို ဆန့်ကျင်တဲ့အနေနဲ့ ပေါ်လာတာ။",
+ te:"Default fonts, blue underlined links, hard black boxes, zero rounding.",
+ tm:"မူလ ဖောင့်အတိုင်း၊ အပြာရောင် မျဉ်းသား လင့်ခ်၊ အနက်ရောင် ဘောင်ထူထူ၊ ထောင့် လုံးဝ မကွေးဘူး။",
+ we:"Craigslist, Hacker News, indie portfolios.",
+ wm:"Craigslist, Hacker News နဲ့ လွတ်လပ် ဒီဇိုင်နာ ဆိုက်များ။"},
+
+{g:0,c:"mod",d:["a"],eye:"Form / Function",n:"Modernism",mn:"ခေတ်သစ်ပုံစံ",era:"1920s onward",
+ e:"Form follows function. Ornament is treated as dishonest; clarity and structure do the work instead.",
+ m:"ပုံစံဟာ အသုံးဝင်မှုကို လိုက်ရမယ် ဆိုတဲ့ အယူအဆ။ အလှဆင်မှုကို ဖြုတ်ပြီး ရှင်းလင်းမှုနဲ့ ဖွဲ့စည်းပုံကို ဦးစားပေးတယ်။",
+ te:"Flush-left text, one primary colour, strict alignment, no decoration.",
+ tm:"ဘယ်ဘက်ညှိ စာသား၊ အဓိက အရောင်တစ်ရောင်၊ တိကျတဲ့ ညှိထားမှု၊ အလှဆင်မှု မပါဘူး။",
+ we:"Braun, IBM, museum signage.",
+ wm:"Braun, IBM၊ ပြတိုက် ဆိုင်းဘုတ်များ။"},
+
+{g:1,c:"nouv",d:["a"],eye:"Paris",n:"Art Nouveau",mn:"သဘာဝနွယ်ပုံစံ",era:"1890-1910",
+ e:"Nature turned into pattern: vines, whiplash curves, nothing straight if it can help it.",
+ m:"သဘာဝ ပန်းပွင့်၊ နွယ်ပင်တွေကို လှလှပပ ပုံစံပြောင်းပြီး သုံးတယ်။ မျဉ်းဖြောင့်ဆိုတာ မရှိသလောက်ပဲ။",
+ te:"Flowing asymmetric curves, gold on deep green, italic serif.",
+ tm:"အကွေးအကောက် မျဉ်းတွေ၊ အစိမ်းရင့် နောက်ခံပေါ် ရွှေရောင်၊ စာလုံးစောင်း serif ဖောင့်။",
+ we:"Perfume, tea and spa branding; the Paris Metro signs.",
+ wm:"ရေမွှေး၊ လက်ဖက်ရည်၊ spa ဘရန်းများ။ ပါရီ ဘူတာ ဆိုင်းဘုတ်များ။"},
+
+{g:1,c:"deco",d:["a","b"],eye:"Metropolis",n:"Art Deco",mn:"စက်မှုခေတ် ဇိမ်ခံပုံစံ",era:"1920-1939",
+ e:"Machine-age luxury. Geometry, symmetry and metal - the look of hotels, cinemas and ocean liners.",
+ m:"စက်မှုခေတ်ရဲ့ ဇိမ်ခံအလှ။ ဂျီဩမေတြီပုံစံ၊ ညီညာမှုနဲ့ သတ္တုအရောင်တွေ သုံးတယ်။ ဟိုတယ်၊ ရုပ်ရှင်ရုံနဲ့ သင်္ဘောကြီးတွေရဲ့ အသွင်။",
+ te:"Gold on black, wide letter-spacing, stepped or fanned lines.",
+ tm:"အနက်ပေါ်မှာ ရွှေရောင်၊ စာလုံးအကွာအဝေး များတယ်၊ လှေကားထစ်ပုံစံ မျဉ်းတွေ ပါတယ်။",
+ we:"Hotels, cinemas, whisky and jewellery labels.",
+ wm:"ဟိုတယ်၊ ရုပ်ရှင်ရုံ၊ ဝီစကီနဲ့ လက်ဝတ်ရတနာ တံဆိပ်များ။"},
+
+{g:1,c:"bau",d:["a","b","c"],eye:"Dessau",n:"Bauhaus",mn:"ဘောက်ဟောက်စ် ကျောင်းပုံစံ",era:"1919-1933",
+ e:"A German school whose rule was simple: circle, square, triangle; red, blue, yellow. The root of most modern design education.",
+ m:"ဂျာမနီက ဒီဇိုင်းကျောင်းတစ်ခုကနေ စတင်ခဲ့တာ။ စည်း၊ လေးထောင့်၊ တြိဂံနဲ့ အနီ/အပြာ/အဝါ သုံးရောင်ပဲ သုံးတယ်။ ခေတ်သစ် ဒီဇိုင်းပညာရဲ့ အခြေခံ ဖြစ်တယ်။",
+ te:"Primary colours, basic shapes as decoration, geometric sans type.",
+ tm:"အခြေခံ အရောင်သုံးရောင်၊ ရိုးရှင်းတဲ့ ပုံသဏ္ဌာန်တွေကို အလှဆင်အဖြစ် သုံးတယ်၊ geometric sans ဖောင့်။",
+ we:"Design schools, museums, sportswear graphics.",
+ wm:"ဒီဇိုင်းကျောင်းများ၊ ပြတိုက်များ၊ အားကစားဝတ်စုံ ဂရပ်ဖစ်များ။"},
+
+{g:1,c:"const",d:["a","b"],eye:"Agitprop",n:"Constructivism",mn:"ဆိုဗီယက် ပိုစတာပုံစံ",era:"1919-1934",
+ e:"Soviet poster design. Type set on a diagonal, red and black only, built to shout across a street.",
+ m:"ဆိုဗီယက် ကြော်ငြာပိုစတာ ပုံစံ။ စာလုံးတွေကို စောင်းပြီး ချထားတယ်၊ အနီနဲ့ အနက်ပဲ သုံးတယ်၊ လမ်းမတစ်ဖက်ကနေတောင် မြင်ရအောင် လုပ်ထားတယ်။",
+ te:"Hard diagonals, heavy condensed caps, red + black + off-white.",
+ tm:"ထောင့်စောင်း မျဉ်းတွေ၊ ကျဉ်းပြီး ထူထဲတဲ့ စာလုံးအကြီးတွေ၊ အနီ + အနက် + ခရင်မ်ရောင်။",
+ we:"Protest posters, record sleeves, streetwear.",
+ wm:"ဆန္ဒပြ ပိုစတာများ၊ အခွေအဖုံးများ၊ streetwear အဝတ်အထည်။"},
+
+{g:1,c:"stijl",d:["a","b","c","d","e"],noEye:true,n:"De Stijl",mn:"လေးထောင့်ကွက် ပုံစံ",era:"1917-1931",
+ e:"Mondrian's world reduced to rectangles: black lines, white fields, three primaries and nothing else.",
+ m:"Mondrian ပန်းချီလို လေးထောင့်ကွက်တွေနဲ့ ဖွဲ့ထားတယ်။ အနက်ရောင် မျဉ်းထူ၊ အဖြူနောက်ခံနဲ့ အခြေခံအရောင် သုံးရောင်ပဲ ရှိတယ်။",
+ te:"Thick black grid lines, blocks of pure red / blue / yellow.",
+ tm:"အနက်ရောင် မျဉ်းကြောင်း ထူထူ၊ အနီ/အပြာ/အဝါ လေးထောင့်ကွက်တွေ။",
+ we:"Furniture, packaging, architecture references.",
+ wm:"ပရိဘောဂ၊ ထုပ်ပိုးမှုနှင့် ဗိသုကာ ဒီဇိုင်းများ။"},
+
+{g:1,c:"swiss",d:["a"],eye:"01 / 04",sub:"Set on a strict grid, flush left, ragged right.",btn:"View",n:"Swiss / International",mn:"ဆွစ် grid ပုံစံ",era:"1950s onward",
+ e:"The grid style taught in every design school: mathematical spacing, one neutral sans, information above expression.",
+ m:"ဒီဇိုင်းကျောင်းတိုင်းမှာ သင်ရတဲ့ grid စနစ်။ အကွာအဝေးတွေကို တွက်ချက်ပြီး ချထားတယ်၊ ဖောင့်တစ်မျိုးတည်း သုံးတယ်၊ အလှထက် သတင်းအချက်အလက် ရှင်းလင်းမှုကို ဦးစားပေးတယ်။",
+ te:"Visible column grid, Helvetica-like type, a single red accent.",
+ tm:"ကော်လံ grid ပေါ်လွင်တယ်၊ Helvetica မျိုး ဖောင့်၊ အနီရောင် တစ်ချက်တည်း ထည့်တယ်။",
+ we:"Airports, timetables, annual reports, most corporate sites.",
+ wm:"လေဆိပ်များ၊ အချိန်ဇယားများ၊ နှစ်ပတ်လည် အစီရင်ခံစာများ၊ ကုမ္ပဏီ ဝဘ်ဆိုက် အများစု။"},
+
+{g:1,c:"mcm",d:["a","b"],eye:"Palm Springs",n:"Mid-Century Modern",mn:"ရာစုနှစ်လယ် ခေတ်မီပုံစံ",era:"1945-1969",
+ e:"Post-war optimism: warm mustards and teals, atomic starbursts, soft organic shapes.",
+ m:"စစ်ပြီးခေတ် အမေရိကန် အလှ။ မုန်ညင်းဝါနဲ့ စိမ်းပြာရောင်၊ ကြယ်ပွင့်ပုံစံနဲ့ ပျော့ပျောင်းတဲ့ အကွေးအဝိုင်း ပုံသဏ္ဌာန်တွေ။",
+ te:"Mustard + teal + cream, rounded blobs, thin starburst motifs.",
+ tm:"မုန်ညင်းဝါ + စိမ်းပြာ + ခရင်မ်၊ အဝိုင်းပုံစံတွေ၊ ကြယ်ပွင့် မျဉ်းသေးတွေ။",
+ we:"Cafes, furniture shops, retro-styled apps.",
+ wm:"ကော်ဖီဆိုင်များ၊ ပရိဘောဂဆိုင်များ၊ retro ပုံစံ အက်ပ်များ။"},
+
+{g:1,c:"pop",d:["a"],eye:"Pow!",n:"Pop Art",mn:"ပေါ့ပ် အနုပညာပုံစံ",era:"1955-1970",
+ e:"Comic books and advertising treated as fine art. Loud, printed, mass-produced by design.",
+ m:"ကာတွန်းနဲ့ ကြော်ငြာပုံစံကို အနုပညာအဖြစ် ပြောင်းသုံးထားတယ်။ ကျယ်လောင်ပြီး ပုံနှိပ်ဆန်တယ်။",
+ te:"Halftone dots, outlined display type, primary yellow and red.",
+ tm:"အစက်ကလေးတွေ (halftone)၊ ဘောင်ခတ်ထားတဲ့ စာလုံးကြီး၊ အဝါနဲ့ အနီ။",
+ we:"Streetwear, comics, food and drink packaging.",
+ wm:"streetwear၊ ကာတွန်း၊ အစားအသောက် ထုပ်ပိုးမှုများ။"},
+
+{g:1,c:"psy",d:["a"],eye:"Fillmore",n:"Psychedelic",mn:"မူးယစ်ခြယ်သ ပုံစံ",era:"1965-1975",
+ e:"Concert-poster style: letterforms stretched until they nearly stop being readable, colour vibrating against colour.",
+ m:"ဂီတပွဲ ပိုစတာပုံစံ။ စာလုံးတွေကို မဖတ်ရလောက်အောင် ဆွဲဆန့်ထားပြီး၊ အရောင်တွေကို တစ်ခုနဲ့တစ်ခု တုန်ခါနေအောင် သုံးတယ်။",
+ te:"Melting warped type, rainbow gradients, barely legible on purpose.",
+ tm:"အရည်ပျော်သလို စာလုံးတွေ၊ သက်တံရောင် gradient၊ တမင် ဖတ်ရခက်အောင် လုပ်ထားတယ်။",
+ we:"Music festivals, album art, craft beer labels.",
+ wm:"ဂီတပွဲတော်များ၊ အခွေအဖုံးများ၊ craft beer တံဆိပ်များ။"},
+
+{g:1,c:"mem",d:["a","b","c"],eye:"Milano",n:"Memphis",mn:"မန်ဖစ် (၈၀ ပြည့် ပုံစံ)",era:"1981-1987",
+ e:"The 80s squiggle-and-confetti look. Deliberately childish shapes and pastels, thrown against black outlines.",
+ m:"၈၀ ပြည့်လွန်နှစ်တွေရဲ့ ကွေးကောက်မျဉ်းနဲ့ အစက်အပြောက် ပုံစံ။ ကလေးဆန်ဆန် ပုံသဏ္ဌာန်တွေကို အနက်ရောင် ဘောင်တွေနဲ့ တွဲသုံးတယ်။",
+ te:"Squiggles, terrazzo dots, mint + pink + yellow, mismatched shapes.",
+ tm:"ကွေးကောက်မျဉ်းတွေ၊ terrazzo အစက်တွေ၊ မင်းသားရောင်/ပန်းရောင်/အဝါ၊ မတူညီတဲ့ ပုံသဏ္ဌာန်တွေ။",
+ we:"Kids brands, 80s throwbacks, retro TV graphics.",
+ wm:"ကလေး ဘရန်းများ၊ ၈၀ ပြည့် ပြန်လည်ခေတ်စားမှု ဂရပ်ဖစ်များ။"},
+
+{g:1,c:"grunge",d:["a"],eye:"Analog",n:"Grunge",mn:"ဂရန်း (စုတ်ပြဲပုံစံ)",era:"1990s",
+ e:"Photocopied, torn and stained. A rejection of the clean corporate look that came before it.",
+ m:"မိတ္တူကူးထားသလို ညစ်ပတ်ပြီး စုတ်ပြဲနေတဲ့ပုံစံ။ သူ့ရှေ့က သန့်ရှင်းတဲ့ ကော်ပိုရိတ် ပုံစံကို ဆန့်ကျင်တာ။",
+ te:"Noise and scratches, torn edges, muddy browns, crooked alignment.",
+ tm:"ဆူညံအစက်နဲ့ ခြစ်ရာတွေ၊ စုတ်ပြဲအနားတွေ၊ ညိုမှောင်ရောင်၊ တစိမ်းစောင်း ချထားမှု။",
+ we:"Skate brands, band merch, indie magazines.",
+ wm:"skate ဘရန်းများ၊ တီးဝိုင်း အမှတ်တရ ပစ္စည်းများ၊ လွတ်လပ် မဂ္ဂဇင်းများ။"},
+
+{g:1,c:"y2k",d:["a"],eye:"Millennium",n:"Y2K",mn:"Y2K (၂၀၀၀ ပြည့် ပုံစံ)",era:"1998-2004",
+ e:"The future as imagined in 1999: chrome, bubbles, lens flare and translucent blue plastic.",
+ m:"၁၉၉၉ ခုနှစ်တုန်းက မြင်ယောင်ခဲ့တဲ့ အနာဂတ်ပုံစံ - ခရုမ်သတ္တုရောင်၊ ပူဖောင်းပုံ၊ အလင်းရောင်နဲ့ အပြာဖောက် ပလတ်စတစ်။",
+ te:"Metallic gradient type, glossy orbs, silver-blue everything.",
+ tm:"သတ္တုရောင် gradient စာလုံး၊ တောက်ပြောင်တဲ့ အဝိုင်းလုံးတွေ၊ ငွေ-ပြာရောင်။",
+ we:"Nostalgia branding, gaming, Gen-Z fashion.",
+ wm:"ရှေးဟောင်းလွမ်း ဘရန်းများ၊ ဂိမ်း၊ Gen-Z ဖက်ရှင်။"},
+
+{g:1,c:"vapor",d:["b","a"],eye:"A E S T H E T I C",n:"Vaporwave / Synthwave",mn:"နေဝင်ချိန် neon ပုံစံ",era:"2010s onward",
+ e:"Nostalgia for an 80s that never happened - sunset gradients, neon grids and VHS colour fringing.",
+ m:"တကယ်မရှိခဲ့ဖူးတဲ့ ၈၀ ပြည့်နှစ်ကို လွမ်းဆွေးပြထားတဲ့ပုံစံ - နေဝင်ချိန် gradient၊ neon grid နဲ့ VHS အရောင်ကွဲ။",
+ te:"Magenta-to-cyan gradient, glowing horizon grid, offset neon type.",
+ tm:"ပန်းရောင်ကနေ ကြက်တူရွေးရောင် gradient၊ တောက်ပတဲ့ grid မျဉ်းစင်၊ ရွှေ့ထားတဲ့ neon စာလုံး။",
+ we:"Lo-fi music channels, gaming, night-life posters.",
+ wm:"lo-fi ဂီတ ချန်နယ်များ၊ ဂိမ်း၊ ညဘဝ ပိုစတာများ။"},
+
+{g:2,c:"skeu",d:[],eye:"Notes",n:"Skeuomorphism",mn:"အစစ်တုပ ပုံစံ",era:"2007-2012",
+ e:"Screens pretending to be objects: leather stitching, paper texture, buttons that look pressable because they look real.",
+ m:"မျက်နှာပြင်ပေါ်မှာ တကယ့်ပစ္စည်းအတိုင်း တုပပြထားတယ် - သားရေ ချုပ်ရိုး၊ စက္ကူသားနဲ့ တကယ်နှိပ်လို့ရမယ် ထင်ရတဲ့ ခလုတ်တွေ။",
+ te:"Material textures, bevels, glossy gradients, drop shadows everywhere.",
+ tm:"အသားပေးထားတဲ့ texture၊ ထောင့်နိမ့်ထောင့်မြင့်၊ တောက်တဲ့ gradient၊ အရိပ်တွေ အများကြီး။",
+ we:"iPhone before iOS 7; older calculator, notes and camera apps.",
+ wm:"iOS 7 မတိုင်မီ iPhone၊ အရင်က ဂဏန်းတွက်စက်၊ မှတ်စုနှင့် ကင်မရာ အက်ပ်များ။"},
+
+{g:2,c:"flat",d:["a"],eye:"Flat",n:"Flat design",mn:"ပြားချပ်ချပ် ပုံစံ",era:"2013 onward",
+ e:"The hard reset. No shadow, no gradient, no texture - just solid colour blocks and clear type.",
+ m:"အားလုံး ဖြုတ်ချလိုက်တဲ့ပုံစံ - အရိပ် မရှိ၊ gradient မရှိ၊ texture မရှိ။ အရောင်တစ်ချပ်ချင်းနဲ့ ရှင်းလင်းတဲ့ စာလုံးပဲ ရှိတယ်။",
+ te:"Pure fills, sharp corners, no depth cues at all.",
+ tm:"အရောင်လုံးလုံး၊ ထောင့်ချွန်၊ အနက်တိမ်ပြပေးတဲ့ အရိပ် လုံးဝ မပါဘူး။",
+ we:"Windows 8, early Google apps, most 2014-era websites.",
+ wm:"Windows 8၊ အစောပိုင်း Google အက်ပ်များ၊ ၂၀၁၄ ဝန်းကျင် ဝဘ်ဆိုက် အများစု။"},
+
+{g:2,c:"mat",d:["a"],eye:"Material",n:"Material Design",mn:"မတီးရီးယယ် ဒီဇိုင်း",era:"2014 onward",
+ e:"Google's answer: flat colour, but on sheets of paper that stack, cast shadows and move. The default look of Android.",
+ m:"Google ရဲ့ အဖြေ - အရောင်ကတော့ flat ပဲ၊ ဒါပေမယ့် စက္ကူချပ်တွေလို ထပ်နေပြီး အရိပ်ကျတယ်၊ လှုပ်ရှားတယ်။ Android ရဲ့ မူလပုံစံ။",
+ te:"Elevation shadows, floating round action button, ripple on tap.",
+ tm:"အမြင့်အလိုက် အရိပ် (elevation)၊ အဝိုင်း FAB ခလုတ်၊ နှိပ်လိုက်ရင် ripple ဖြစ်တယ်။",
+ we:"Android, Gmail, Google Maps - and Flutter apps by default.",
+ wm:"Android၊ Gmail၊ Google Maps - Flutter အက်ပ်တွေရဲ့ မူလပုံစံလည်း ဒါပဲ။"},
+
+{g:2,c:"neu",d:[],eye:"Soft UI",n:"Neumorphism",mn:"ဖောင်းထွက် ပျော့ပျောင်းပုံစံ",era:"2019-2021",
+ e:"Controls extruded from the background as if pressed out of the same sheet. Beautiful, and famously hard to read.",
+ m:"နောက်ခံအရောင်ထဲကနေ ဖောင်းထွက်လာသလို ခလုတ်တွေကို လုပ်ထားတယ်။ လှပေမယ့် ဖတ်ရခက်လို့ ဝေဖန်ခံရတယ်။",
+ te:"One background colour for everything, twin light + dark shadows, almost no contrast.",
+ tm:"အားလုံး နောက်ခံအရောင် တစ်ခုတည်း၊ အလင်း/အမှောင် အရိပ် နှစ်ဖက်၊ contrast နည်းတယ်။",
+ we:"Concept designs on Dribbble; rarely shipped in real products.",
+ wm:"Dribbble ပေါ်က concept ဒီဇိုင်းများ။ တကယ့် ထုတ်ကုန်တွေမှာ ရှားရှားပါးပါးပဲ သုံးတယ်။"},
+
+{g:2,c:"glass",d:["a","b"],eye:"Frosted",n:"Glassmorphism",mn:"မှန်သားပုံစံ",era:"2020 onward",
+ e:"Frosted panels floating over colour. Depth comes from blur and transparency instead of shadow.",
+ m:"အရောင်စုံ နောက်ခံပေါ်မှာ မှန်ဖန်သားလို အလင်းဖောက် panel တွေ။ အနက်တိမ်ကို အရိပ်နဲ့ မဟုတ်ဘဲ blur နဲ့ ဖော်ပြတယ်။",
+ te:"Blurred translucent card, thin white border, colourful blobs behind.",
+ tm:"blur ဖြစ်နေတဲ့ အလင်းဖောက် ကတ်၊ အဖြူရောင် ဘောင်ပါး၊ နောက်မှာ အရောင်စက်ဝိုင်းတွေ။",
+ we:"macOS Big Sur, Windows 11, iOS Control Centre.",
+ wm:"macOS Big Sur၊ Windows 11၊ iOS Control Centre။"},
+
+{g:2,c:"clay",d:[],eye:"Soft 3D",n:"Claymorphism",mn:"ရွှံ့စေးပုံစံ",era:"2021 onward",
+ e:"Puffy, rounded, toy-like shapes in pastel. Friendly and unserious - common in fintech and kids' products.",
+ m:"ဖောင်းဖောင်းလုံးလုံး ကစားစရာလို ပုံစံ။ pastel အရောင်တွေနဲ့ ဖော်ရွေတယ် - fintech နဲ့ ကလေး ထုတ်ကုန်တွေမှာ များတယ်။",
+ te:"Very large radius, inner highlight + inner shadow, pastel lilac and peach.",
+ tm:"ထောင့်ကွေး အများကြီး၊ အတွင်းအလင်းနဲ့ အတွင်းအရိပ်၊ ခရမ်းနုနဲ့ ရှောက်သီးရောင်။",
+ we:"Fintech onboarding, kids apps, 3D icon sets.",
+ wm:"fintech အက်ပ်များ၊ ကလေး အက်ပ်များ၊ 3D icon အစုံများ။"},
+
+{g:2,c:"nbrut",d:["a"],eye:"New",n:"Neo-brutalism",mn:"ခေတ်သစ် အကြမ်းထည်ပုံစံ",era:"2020 onward",
+ e:"Brutalism cleaned up and made friendly: still loud and blocky, but arranged carefully. Everywhere in startup branding.",
+ m:"Brutalism ကို သန့်သန့်ရှင်းရှင်း ပြန်လုပ်ထားတာ - ကျယ်လောင်တုန်းပဲ ဒါပေမယ့် သေချာ ချထားတယ်။ အခု startup ဘရန်းတွေမှာ အများဆုံး တွေ့ရတယ်။",
+ te:"Thick black outlines, hard offset shadow with no blur, saturated flat colour.",
+ tm:"အနက်ရောင် ဘောင်ထူ၊ blur မပါဘဲ ရွှေ့ချထားတဲ့ အရိပ်၊ အရောင်ပြင်းပြင်းတွေ။",
+ we:"Gumroad, Figma community, indie SaaS landing pages.",
+ wm:"Gumroad၊ Figma community၊ indie SaaS ဝဘ်ဆိုက်များ။"},
+
+{g:2,c:"bento",d:[],eye:"Grid",n:"Bento grid",mn:"ထမင်းဗူးကွက် ပုံစံ",era:"2022 onward",
+ e:"Content packed into a lunchbox of unequal rounded tiles, each holding one idea. Apple's product pages made it standard.",
+ m:"ထမင်းဗူး ခွဲကွက်လို အရွယ်မတူတဲ့ ထောင့်ကွေး အကွက်တွေထဲ တစ်ကွက်တစ်အကြောင်း ထည့်ပြတယ်။ Apple ရဲ့ ထုတ်ကုန် စာမျက်နှာတွေက ခေတ်စားစေခဲ့တာ။",
+ te:"Tiles of different sizes, equal gaps, everything rounded.",
+ tm:"အရွယ်မတူ အကွက်တွေ၊ ကြားအကွာအဝေး တူညီ၊ အားလုံး ထောင့်ကွေး။",
+ we:"Apple product pages, AI startup landing pages, dashboards.",
+ wm:"Apple ထုတ်ကုန် စာမျက်နှာများ၊ AI startup ဝဘ်ဆိုက်များ၊ dashboard များ။"},
+
+{g:2,c:"dark",d:["a"],eye:"Dark",n:"Dark mode design",mn:"အမှောင်ပုံစံ",era:"2019 onward",
+ e:"Not simply inverted - surfaces get lighter as they get closer, text is softened off pure white, one accent carries the colour.",
+ m:"အရောင် ပြောင်းပြန်လှန်ရုံ မဟုတ်ဘူး - အပေါ်ဆုံး အလွှာလေ အရောင်ဖျော့လေ ဖြစ်ရတယ်၊ စာလုံးကို အဖြူစစ်စစ် မသုံးဘဲ ဖျော့ထားရတယ်၊ တောက်တဲ့ အရောင်တစ်ရောင်ပဲ ထည့်ရတယ်။",
+ te:"Near-black not black, grey-white text, faint borders, single bright accent.",
+ tm:"အနက်စစ်စစ် မဟုတ်ဘဲ အနက်ဖျော့၊ မီးခိုးဖြူ စာလုံး၊ ဘောင်မှိန်မှိန်၊ တောက်တဲ့ အရောင် တစ်ရောင်။",
+ we:"VS Code, X, YouTube - an option in almost every app now.",
+ wm:"VS Code၊ X၊ YouTube - အခုဆို အက်ပ်တိုင်းလိုလိုမှာ ရွေးချယ်စရာအဖြစ် ပါလာပြီ။"},
+
+{g:2,c:"aurora",d:["a","b","c"],eye:"Ambient",n:"Aurora / mesh gradient",mn:"အလင်းရောင်ဖြာ နောက်ခံပုံစံ",era:"2021 onward",
+ e:"Soft blooms of coloured light behind flat content. The default background of AI and developer-tool sites.",
+ m:"flat အကြောင်းအရာ နောက်မှာ အရောင်အလင်းတွေ ပျော့ပျောင်းစွာ ဖြာနေတဲ့ပုံစံ။ AI နဲ့ developer tool ဆိုက်တွေရဲ့ မူလ နောက်ခံ။",
+ te:"Heavily blurred colour circles, dark ground, no hard edges anywhere.",
+ tm:"အလွန်အမင်း blur လုပ်ထားတဲ့ အရောင် စက်ဝိုင်းတွေ၊ မှောင်တဲ့ နောက်ခံ၊ အနားထောင့် မရှိဘူး။",
+ we:"AI products, developer tools, SaaS hero sections.",
+ wm:"AI ထုတ်ကုန်များ၊ developer tool များ၊ SaaS ဝဘ်ဆိုက် ခေါင်းပိုင်း။"},
+
+{g:2,c:"iso",d:["a","b"],eye:"3D",n:"3D / Isometric",mn:"သုံးဖက်မြင် ပုံစံ",era:"2016 onward",
+ e:"Objects drawn at a fixed tilt with no perspective, so every face keeps the same scale. Reads as technical and buildable.",
+ m:"အရာဝတ္ထုတွေကို ထောင့်တစ်မျိုးတည်းနဲ့ ဆွဲပြီး perspective မသုံးဘူး၊ ဒါကြောင့် မျက်နှာပြင်တိုင်း အရွယ်တူတယ်။ နည်းပညာဆန်ပြီး တည်ဆောက်လို့ရမယ်လို့ ခံစားရတယ်။",
+ te:"Cubes at a fixed 30 degree tilt, three shades per object, no vanishing point.",
+ tm:"၃၀ ဒီဂရီ စတုဂံလုံးတွေ၊ တစ်လုံးမှာ အရောင် သုံးမျိုး၊ ပျောက်ကွယ်ရာ အမှတ် မရှိဘူး။",
+ we:"Explainer graphics, infrastructure diagrams, game art.",
+ wm:"ရှင်းလင်းပုံများ၊ စနစ်ဖွဲ့စည်းပုံ ပုံကြမ်းများ၊ ဂိမ်းပုံများ။"},
+
+{g:2,c:"illus",d:["a","b","c"],eye:"Draw",n:"Illustrative",mn:"ပုံဆွဲအခြေပြု ပုံစံ",era:"2015 onward",
+ e:"Custom drawing carries the brand instead of photography. Warm, human, and hard for competitors to copy.",
+ m:"ဓာတ်ပုံအစား ကိုယ်ပိုင် ပုံဆွဲတွေနဲ့ ဘရန်းကို ဖော်ပြတယ်။ နွေးထွေးပြီး လူသားဆန်တယ်၊ တခြားသူတွေ ကူးချရ ခက်တယ်။",
+ te:"Hand-made blob shapes, limited warm palette, a character or scene as the hero.",
+ tm:"လက်ဆွဲ ပုံသဏ္ဌာန်တွေ၊ နွေးထွေးတဲ့ အရောင် အနည်းငယ်၊ ဇာတ်ကောင် သို့မဟုတ် မြင်ကွင်းတစ်ခုကို အဓိကထား။",
+ we:"Mailchimp, Slack, Dropbox, most startup marketing sites.",
+ wm:"Mailchimp၊ Slack၊ Dropbox၊ startup ကြော်ငြာ ဆိုက် အများစု။"}
+];
+
+var GROUPS = [
+ {e:"Attitudes",m:"ဒီဇိုင်း သဘောထား",
+  pe:"Not looks so much as positions - how much is the design willing to say, and how loudly? Everything else sits somewhere on this spectrum.",
+  pm:"ဒါတွေက အသွင်အပြင်ထက် သဘောထားတွေ ဖြစ်တယ် - ဒီဇိုင်းက ဘယ်လောက် ပြောချင်လဲ၊ ဘယ်လောက် ကျယ်လောင်လဲ ဆိုတာ။ ကျန်တဲ့ ပုံစံအားလုံး ဒီကြားထဲမှာ ရှိတယ်။"},
+ {e:"Movements",m:"သမိုင်းဝင် ပုံစံများ",
+  pe:"Named periods with a fixed vocabulary of colour, shape and type. Borrow one and the audience gets the reference instantly.",
+  pm:"အရောင်၊ ပုံသဏ္ဌာန်နဲ့ စာလုံးပုံစံ သတ်မှတ်ထားတဲ့ ခေတ်တစ်ခုချင်းစီ။ တစ်ခုခုကို ငှားသုံးလိုက်တာနဲ့ ကြည့်တဲ့သူက ချက်ချင်း သိသွားတယ်။"},
+ {e:"Screen styles",m:"မျက်နှာပြင် ပုံစံများ",
+  pe:"These are the ones that matter for apps and websites. Unlike the movements above they arrived in a clear order, each one answering the last.",
+  pm:"အက်ပ်နဲ့ ဝဘ်ဆိုက်တွေအတွက် အရေးအကြီးဆုံးက ဒါတွေပါ။ အပေါ်က ပုံစံတွေနဲ့ မတူဘဲ ဒါတွေက အစဉ်လိုက် ပေါ်လာတာဖြစ်ပြီး တစ်ခုက တစ်ခုကို တုံ့ပြန်ထားတာ။"}
+];
+
+var RAIL = [
+ {y:"2007",e:"Skeuomorphism - iPhone launches",m:"အစစ်တုပ ပုံစံ - iPhone စတင်"},
+ {y:"2013",e:"Flat - iOS 7 strips it all out",m:"ပြားချပ်ချပ် - iOS 7 က အကုန်ဖြုတ်"},
+ {y:"2014",e:"Material - Google adds depth back",m:"Material - Google က အနက်တိမ် ပြန်ထည့်"},
+ {y:"2019",e:"Neumorphism + dark mode",m:"ဖောင်းထွက်ပုံစံ + အမှောင်ပုံစံ"},
+ {y:"2020",e:"Glass - macOS Big Sur",m:"မှန်သားပုံစံ - macOS Big Sur"},
+ {y:"2021",e:"Clay + aurora gradients",m:"ရွှံ့စေးပုံစံ + အလင်းဖြာ နောက်ခံ"},
+ {y:"2022",e:"Bento grids + neo-brutalism",m:"ထမင်းဗူးကွက် + ခေတ်သစ် အကြမ်းထည်"}
+];
+
+var METHOD = [
+ ["UX vs UI","UX နဲ့ UI","UX is the flow and the decisions; UI is the surface people touch. One person often does both.","UX က အသုံးပြုပုံ အစီအစဉ်နဲ့ ဆုံးဖြတ်ချက်တွေ၊ UI ကတော့ လူတွေ ထိတွေ့ရတဲ့ မျက်နှာပြင်။ တစ်ယောက်တည်းက နှစ်မျိုးလုံး လုပ်တာများတယ်။"],
+ ["Human-centred design","လူကို အခြေခံတဲ့ ဒီဇိုင်း","Decisions come from watching real users, not from the team's taste.","ကိုယ့်အကြိုက်နဲ့ မဟုတ်ဘဲ တကယ့် အသုံးပြုသူတွေကို လေ့လာပြီး ဆုံးဖြတ်တာ။"],
+ ["Design thinking","ဒီဇိုင်း တွေးခေါ်နည်း","The five-step loop: empathise, define, ideate, prototype, test.","အဆင့်ငါးဆင့် - နားလည်၊ ပြဿနာ သတ်မှတ်၊ အကြံထုတ်၊ နမူနာလုပ်၊ စမ်းသပ်။"],
+ ["Design system","ဒီဇိုင်း စနစ်","Reusable components plus the rules for using them. Material is one.","ပြန်သုံးလို့ရတဲ့ component တွေနဲ့ သူတို့ကို သုံးရမယ့် စည်းမျဉ်းတွေ။ Material ဟာ တစ်ခုပဲ။"],
+ ["Atomic design","အက်တမ် ဒီဇိုင်း","A way to organise a system: atoms, molecules, organisms, templates, pages.","စနစ်တစ်ခုကို စီစဉ်တဲ့နည်း - atoms, molecules, organisms, templates, pages။"],
+ ["Wireframe","မူကြမ်း ဘောင်","Grey boxes. Structure only, no styling, meant to be argued about cheaply.","မီးခိုးရောင် လေးထောင့်ကွက်တွေပဲ။ ဖွဲ့စည်းပုံပဲ ပြတာ၊ အရောင်အဆင် မပါ၊ ငြင်းခုံဖို့ လွယ်အောင်။"],
+ ["Mockup","နမူနာပုံ","The wireframe with real colour, type and images. Looks finished, does nothing.","wireframe ကို အရောင်၊ ဖောင့်၊ ပုံတွေနဲ့ ပြီးအောင် လုပ်ထားတာ။ ကြည့်ရတာ ပြီးနေပေမယ့် နှိပ်လို့ မရဘူး။"],
+ ["Prototype","စမ်းသပ်ပုံစံ","The mockup wired up so it can be clicked through and tested.","mockup ကို နှိပ်လို့ရအောင် ချိတ်ဆက်ထားတာ၊ စမ်းသပ်လို့ ရပြီ။"],
+ ["Responsive design","ဖန်သားပြင်လိုက် ဒီဇိုင်း","One layout that reflows to fit any screen, rather than separate designs per device.","မျက်နှာပြင် အရွယ်အစားတိုင်းနဲ့ ကိုက်အောင် အလိုအလျောက် ပြန်စီပေးတဲ့ layout တစ်ခုတည်း။"],
+ ["Accessible design","အားလုံး သုံးနိုင်တဲ့ ဒီဇိုင်း","Usable with low vision, colour blindness, a screen reader or keyboard only. Contrast is the first thing to check.","အမြင်အာရုံနည်းသူ၊ အရောင်မကွဲသူ၊ screen reader ဒါမှမဟုတ် ကီးဘုတ်ပဲ သုံးသူတွေလည်း သုံးလို့ရဖို့။ contrast ကို အရင်ဆုံး စစ်ပါ။"]
+];
+
+var VOCAB = [
+ ["hierarchy","အဆင့်အတန်း","What the eye reaches first, second, third.","မျက်လုံးက ဘယ်ဟာကို အရင်မြင်မလဲဆိုတဲ့ အစီအစဉ်။"],
+ ["contrast","ကွာခြားချက်","Difference that makes something readable or important.","ဖတ်ရလွယ်အောင်၊ အရေးကြီးမှန်း သိအောင် ကွာခြားစေတာ။"],
+ ["whitespace","ဗလာနေရာ","Empty room. Never wasted space.","နေရာလွတ်။ အလဟဿ မဟုတ်ဘူး။"],
+ ["alignment","ညှိထားမှု","Shared invisible edges between elements.","အချင်းချင်း မမြင်ရတဲ့ အနားစွန်း တူညီအောင် ညှိတာ။"],
+ ["proximity","နီးကပ်မှု","Things placed near each other read as related.","နီးနီးထားရင် ဆက်စပ်တယ်လို့ မျက်လုံးက မှတ်တယ်။"],
+ ["repetition","ထပ်ခါထပ်ခါ","The same treatment reused until it feels like a system.","တူညီတဲ့ ပုံစံကို ထပ်ခါထပ်ခါ သုံးပြီး စနစ်တစ်ခု ဖြစ်လာစေတာ။"],
+ ["scale","အရွယ်အစား","Relative size used to signal importance.","အရေးကြီးမှုကို အရွယ်အစားနဲ့ ပြတာ။"],
+ ["rhythm","စည်းချက်","Repeating spacing that gives a page a pulse.","ထပ်နေတဲ့ အကွာအဝေးက စာမျက်နှာကို ရစ်သွင် ပေးတယ်။"],
+ ["grid","ကွက်စနစ်","The column structure everything snaps to.","အားလုံး ကပ်ညှိရမယ့် ကော်လံ ဖွဲ့စည်းပုံ။"],
+ ["balance","ချိန်ခွင်လျှာ","Visual weight spread evenly, or deliberately not.","အလေးချိန် ညီအောင် - ဒါမှမဟုတ် တမင် မညီအောင် ချထားတာ။"],
+ ["affordance","သုံးပုံပြ သဲလွန်စ","A control that looks like what it does.","ဘာလုပ်တာလဲဆိုတာ ကြည့်ရုံနဲ့ သိရတဲ့ ခလုတ်။"],
+ ["gestalt","အုပ်စုမြင်ခြင်း","How the eye groups shapes into wholes automatically.","မျက်လုံးက ပုံသဏ္ဌာန်တွေကို အလိုအလျောက် အုပ်စုဖွဲ့ မြင်တဲ့ သဘော။"]
+];
+
+var UI = {
+ en:{kick:"Visual reference", kick2:"30 specimens / 4 families",
+  title:"Design Style Swatchbook",
+  lede:"Style names are easier to remember when you have seen them. Every swatch below renders the <strong>same four elements</strong> - a small label, the word <em>Studio</em>, one line of copy, one button - in a different style. The content never changes; only the treatment does.",
+  anat:["<b>Swatch</b> - the style, drawn","<b>Date</b> - when it was current","<b>Tell</b> - how to recognise it"],
+  hint:"Tap any card to read the full explanation",
+  open:"Full detail",
+  lblWhat:"What it is", lblTell:"How to spot it", lblWhere:"Where you see it",
+  close:"Close",
+  method:"Method words", methodP:"Often mixed in with the list above, but these are not looks at all - they describe how the work gets done.",
+  vocabH:"The vocabulary underneath", vocabP:"Every style above is built from the same handful of ideas. When a layout feels wrong, one of these is usually the reason.",
+  closer:"<b>If you only remember ten:</b> Traditional, Minimalism, Maximalism, Skeuomorphism, Flat, Material, Neumorphism, Glassmorphism, Neo-brutalism, Bento. Those cover almost everything a client or a designer will actually say out loud.",
+  sig:"30 specimens<br>4 families<br>rendered in CSS"},
+ my:{kick:"မြင်သာတဲ့ လက်စွဲ", kick2:"နမူနာ ၃၀ / အုပ်စု ၄ မျိုး",
+  title:"ဒီဇိုင်းပုံစံ နမူနာစာအုပ်",
+  lede:"ပုံစံနာမည်တွေဟာ တစ်ခါမြင်ဖူးရင် မှတ်မိလွယ်ပါတယ်။ အောက်က နမူနာတိုင်းမှာ <strong>တူညီတဲ့ အစိတ်အပိုင်း လေးခု</strong> - စာတန်းသေးသေး၊ <em>Studio</em> ဆိုတဲ့ စကားလုံး၊ စာကြောင်းတစ်ကြောင်းနဲ့ ခလုတ်တစ်ခု - ကို ပုံစံ တစ်မျိုးစီနဲ့ ဆွဲပြထားတာပါ။ အကြောင်းအရာက မပြောင်းဘူး၊ ပုံစံပဲ ပြောင်းသွားတာ။",
+  anat:["<b>နမူနာ</b> - ပုံစံကို တကယ်ဆွဲပြထားတာ","<b>ခုနှစ်</b> - ဘယ်တုန်းက ခေတ်စားခဲ့လဲ","<b>မှတ်ရန်</b> - ဘယ်လို မှတ်မိမလဲ"],
+  hint:"ကတ်တစ်ခုခုကို နှိပ်ရင် အသေးစိတ် ဖတ်လို့ရပါတယ်",
+  open:"အသေးစိတ် ဖတ်ရန်",
+  lblWhat:"ဘာလဲ", lblTell:"ဘယ်လို မှတ်မိမလဲ", lblWhere:"ဘယ်မှာ တွေ့ရလဲ",
+  close:"ပိတ်မည်",
+  method:"လုပ်ငန်းစဉ် ဝေါဟာရများ", methodP:"အပေါ်က စာရင်းထဲ ရောပါလေ့ရှိပေမယ့် ဒါတွေက အသွင်အပြင် မဟုတ်ပါဘူး - အလုပ်ကို ဘယ်လို လုပ်ရမလဲဆိုတာကို ပြောတာပါ။",
+  vocabH:"အခြေခံ ဒီဇိုင်း ဝေါဟာရ", vocabP:"အပေါ်က ပုံစံအားလုံးဟာ ဒီအခြေခံ သဘောတရား နည်းနည်းလေးကနေပဲ တည်ဆောက်ထားတာပါ။ layout တစ်ခု ဆိုးနေတယ်လို့ ခံစားရရင် ဒီထဲက တစ်ခုခု လွဲနေလို့ ဖြစ်တတ်တယ်။",
+  closer:"<b>ဆယ်ခုပဲ မှတ်မယ်ဆိုရင်</b> - Traditional, Minimalism, Maximalism, Skeuomorphism, Flat, Material, Neumorphism, Glassmorphism, Neo-brutalism, Bento။ ဒါတွေက ဖောက်သည် ဒါမှမဟုတ် ဒီဇိုင်နာတစ်ယောက် ပြောလေ့ရှိတာ အားလုံးနီးပါး ခြုံမိပါတယ်။",
+  sig:"နမူနာ ၃၀<br>အုပ်စု ၄ မျိုး<br>CSS နဲ့ ဆွဲထားသည်"}
+};
+
+var lang = "my";
+function $(id){ return document.getElementById(id); }
+function esc(s){ return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;"); }
+function myc(){ return lang === "my" ? " my" : ""; }
+function mycls(){ return lang === "my" ? "my" : ""; }
+
+function swatchHTML(s){
+  var h = '<div class="swatch sw-' + s.c + '">';
+  for (var i = 0; i < s.d.length; i++){ h += '<i class="deco ' + s.d[i] + '"></i>'; }
+  h += '<div class="mini">';
+  if (!s.noEye){ h += '<span class="eye">' + esc(s.eye) + '</span>'; }
+  h += '<span class="ttl">Studio</span>';
+  h += '<span class="sub">' + esc(s.sub || "Design & Print") + '</span>';
+  h += '<span class="btn">' + esc(s.btn || "View") + '</span>';
+  return h + '</div></div>';
+}
+
+function cardHTML(s, i){
+  return '<button type="button" class="card" data-i="' + i + '">' +
+    swatchHTML(s) +
+    '<div class="meta">' +
+      '<div class="meta-top"><h3 class="' + mycls() + '">' +
+        esc(lang === "my" ? s.mn : s.n) + '</h3><span class="era">' + esc(s.era) + '</span></div>' +
+      '<p class="desc' + myc() + '">' + esc(lang === "my" ? s.m : s.e) + '</p>' +
+      '<span class="open-cue' + myc() + '">' + esc(UI[lang].open) + '</span>' +
+    '</div></button>';
+}
+
+function railHTML(){
+  var h = '<div class="rail-wrap"><ol class="rail">';
+  for (var i = 0; i < RAIL.length; i++){
+    h += '<li><span class="yr">' + RAIL[i].y + '</span><span class="nm' + myc() + '">' +
+         esc(lang === "my" ? RAIL[i].m : RAIL[i].e) + '</span></li>';
+  }
+  return h + '</ol></div>';
+}
+
+function render(){
+  var t = UI[lang];
+  document.documentElement.setAttribute("lang", lang === "my" ? "my" : "en");
+  $("btn-en").setAttribute("aria-pressed", lang === "en" ? "true" : "false");
+  $("btn-my").setAttribute("aria-pressed", lang === "my" ? "true" : "false");
+
+  $("kicker").innerHTML = esc(t.kick) + ' <span>' + esc(t.kick2) + '</span>';
+  $("kicker").className = "kicker" + myc();
+  $("pgtitle").textContent = t.title;
+  $("pgtitle").className = mycls();
+  $("lede").innerHTML = t.lede;
+  $("lede").className = "lede" + myc();
+  $("hint").textContent = t.hint;
+  $("hint").className = "hint" + myc();
+  $("anatomy").innerHTML = t.anat.map(function(a){ return "<span>" + a + "</span>"; }).join("");
+  $("anatomy").className = "anatomy" + myc();
+
+  var out = "";
+  for (var g = 0; g < GROUPS.length; g++){
+    var grp = GROUPS[g];
+    var items = [];
+    for (var q = 0; q < STYLES.length; q++){ if (STYLES[q].g === g){ items.push(q); } }
+    out += '<section><div class="sec-head"><h2 class="' + mycls() + '">' +
+           esc(lang === "my" ? grp.m : grp.e) + '</h2><span class="count">' +
+           ("0" + items.length).slice(-2) + '</span><p class="' + mycls() + '">' +
+           esc(lang === "my" ? grp.pm : grp.pe) + '</p></div>';
+    if (g === 2){ out += railHTML(); }
+    out += '<div class="grid">';
+    for (var i = 0; i < items.length; i++){ out += cardHTML(STYLES[items[i]], items[i]); }
+    out += '</div></section>';
+  }
+
+  out += '<section><div class="sec-head"><h2 class="' + mycls() + '">' +
+         esc(t.method) + '</h2><span class="count">10</span><p class="' + mycls() +
+         '">' + esc(t.methodP) + '</p></div><dl class="defs">';
+  for (var k = 0; k < METHOD.length; k++){
+    var r = METHOD[k];
+    out += '<div><dt class="' + mycls() + '">' + esc(lang === "my" ? r[1] : r[0]) +
+           '</dt><dd class="' + mycls() + '">' + esc(lang === "my" ? r[3] : r[2]) + '</dd></div>';
+  }
+  out += '</dl></section>';
+
+  out += '<section><div class="sec-head"><h2 class="' + mycls() + '">' +
+         esc(t.vocabH) + '</h2><span class="count">12</span><p class="' + mycls() +
+         '">' + esc(t.vocabP) + '</p></div><div class="vocab">';
+  for (var v = 0; v < VOCAB.length; v++){
+    var w = VOCAB[v];
+    out += '<div><b>' + esc(w[0]) +
+           (lang === "my" ? ' <span class="my">' + esc(w[1]) + '</span>' : '') +
+           '</b><span class="' + mycls() + '">' + esc(lang === "my" ? w[3] : w[2]) + '</span></div>';
+  }
+  out += '</div></section>';
+
+  $("sections").innerHTML = out;
+  $("closer").innerHTML = '<p class="' + mycls() + '">' + t.closer +
+                          '</p><p class="sig">' + t.sig + '</p>';
+}
+
+var lastFocus = null;
+function openSheet(i){
+  var s = STYLES[i], t = UI[lang], first = (lang === "my");
+  lastFocus = document.activeElement;
+  $("sheet-swatch").innerHTML = swatchHTML(s);
+  function blk(label, my, en){
+    return '<div class="blk"><span class="lbl' + myc() + '">' + esc(label) + '</span>' +
+      (first ? '<p class="my">' + esc(my) + '</p><p class="en">' + esc(en) + '</p>'
+             : '<p>' + esc(en) + '</p><p class="my en">' + esc(my) + '</p>') + '</div>';
+  }
+  var body = '<div class="sheet-head"><div><h3 id="sheet-title">' + esc(s.n) +
+    '</h3><span class="my-name">' + esc(s.mn) + '</span></div><span class="era">' +
+    esc(s.era) + '</span></div>';
+  body += blk(t.lblWhat, s.m, s.e);
+  body += blk(t.lblTell, s.tm, s.te);
+  body += blk(t.lblWhere, s.wm, s.we);
+  body += '<button type="button" class="sheet-close' + myc() + '" id="sheet-close">' + esc(t.close) + '</button>';
+  $("sheet-body").innerHTML = body;
+  $("ov").hidden = false;
+  document.body.style.overflow = "hidden";
+  $("sheet-close").focus();
+}
+
+function closeSheet(){
+  $("ov").hidden = true;
+  document.body.style.overflow = "";
+  if (lastFocus){ lastFocus.focus(); }
+}
+
+$("btn-en").addEventListener("click", function(){ lang = "en"; render(); });
+$("btn-my").addEventListener("click", function(){ lang = "my"; render(); });
+$("sections").addEventListener("click", function(ev){
+  var c = ev.target.closest ? ev.target.closest(".card") : null;
+  if (c){ openSheet(parseInt(c.getAttribute("data-i"), 10)); }
+});
+$("ov").addEventListener("click", function(ev){
+  if (ev.target === $("ov") || ev.target.id === "sheet-close"){ closeSheet(); }
+});
+document.addEventListener("keydown", function(ev){
+  if (ev.key === "Escape" && !$("ov").hidden){ closeSheet(); }
+});
+
+render();
+</script>
