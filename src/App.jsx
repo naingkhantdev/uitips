@@ -92,15 +92,28 @@ export default function App() {
         </section>
       </main>
 
-      <footer className="mt-16 flex flex-wrap items-start justify-between gap-7 border-t-2 border-ink pt-7">
-        <p
-          className={`m-0 max-w-[56ch] text-[14px] text-ink-2 [&_b]:font-semibold [&_b]:text-ink ${my ? "my" : ""}`}
-          dangerouslySetInnerHTML={{ __html: t.closer }}
-        />
-        <p
-          className="chrome m-0 text-right font-mono text-[12px] leading-[1.6]"
-          dangerouslySetInnerHTML={{ __html: t.sig }}
-        />
+      <footer className="mt-16 border-t-2 border-ink pt-7">
+        <div className="flex flex-wrap items-start justify-between gap-7">
+          <p
+            className={`m-0 max-w-[56ch] text-[14px] text-ink-2 [&_b]:font-semibold [&_b]:text-ink ${my ? "my" : ""}`}
+            dangerouslySetInnerHTML={{ __html: t.closer }}
+          />
+          <p
+            className="chrome m-0 text-right font-mono text-[12px] leading-[1.6]"
+            dangerouslySetInnerHTML={{ __html: t.sig }}
+          />
+        </div>
+
+        {/* Byline bar. Solid ink rather than chrome: the gradient's dark band
+            eats small type, and a credit has to stay readable. */}
+        <div className="mt-9 flex flex-wrap items-center justify-between gap-3 border-t border-rule pt-5">
+          <span className="font-mono text-[13px] font-semibold tracking-[.2em] text-ink uppercase">
+            rkydev
+          </span>
+          <span className="num font-mono text-[11px] tracking-[.06em] text-ink-3">
+            © {new Date().getFullYear()} rkydev. All rights reserved.
+          </span>
+        </div>
       </footer>
 
       {openIndex !== null && (
