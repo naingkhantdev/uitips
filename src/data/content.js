@@ -630,10 +630,13 @@ export const COMBOS = [
     mn: "SaaS ဒက်ရှ်ဘုတ်",
     plat: "web",
     colors: ["#F4F6FA", "#121A2B", "#1B44D8"],
-    head: "Geist",
+    head: "Space Grotesk",
     body: "Inter",
+    radius: 8,
     e: "A near-white ground, near-black text and a single blue accent - keeps a data-dense screen calm instead of busy.",
-    m: "အဖြူနီးပါး နောက်ခံ၊ အနက်နီးပါး စာသားနှင့် အပြာရောင် ပေါ်လွင်ချက် တစ်ခုတည်း - Data များနှင့် ပြည့်နှက်နေသော မျက်နှာပြင်ကို ရှုပ်ထွေးစေမည့်အစား ငြိမ်သက်စေသည်။"
+    m: "အဖြူနီးပါး နောက်ခံ၊ အနက်နီးပါး စာသားနှင့် အပြာရောင် ပေါ်လွင်ချက် တစ်ခုတည်း - Data များနှင့် ပြည့်နှက်နေသော မျက်နှာပြင်ကို ရှုပ်ထွေးစေမည့်အစား ငြိမ်သက်စေသည်။",
+    rec: "Ask for: background #F4F6FA, ink text #121A2B, one blue accent #1B44D8. Headings in Space Grotesk, body in Inter. 8px corner radius, tight and consistent spacing.",
+    recM: "တောင်းဆိုရန် - Background #F4F6FA၊ Ink စာသား #121A2B၊ အပြာရောင် Accent #1B44D8 တစ်ခုတည်း။ ခေါင်းစဉ်များအတွက် Space Grotesk၊ Body အတွက် Inter သုံးပါ။ 8px ထောင့်ကွေးနှင့် တင်းကျပ်သော အကွာအဝေးဖြင့် စီစဉ်ပါ။"
   },
   {
     n: "Marketing Landing Page",
@@ -642,8 +645,11 @@ export const COMBOS = [
     colors: ["#FFFFFF", "#111318", "#7C3AED"],
     head: "Sora",
     body: "Inter",
+    radius: 14,
     e: "A bold display heading sells the pitch in one glance; a plain workhorse body keeps the proof underneath it legible.",
-    m: "ရဲရင့်သော ခေါင်းစဉ်ဖောင့်က တစ်ကြည့်ချင်းဖြင့် စိတ်ဆွဲဆောင်ပြီး ရိုးရှင်းသော Body ဖောင့်က အောက်ခြေ အထောက်အထားများကို ဖတ်ရလွယ်အောင် ထိန်းပေးသည်။"
+    m: "ရဲရင့်သော ခေါင်းစဉ်ဖောင့်က တစ်ကြည့်ချင်းဖြင့် စိတ်ဆွဲဆောင်ပြီး ရိုးရှင်းသော Body ဖောင့်က အောက်ခြေ အထောက်အထားများကို ဖတ်ရလွယ်အောင် ထိန်းပေးသည်။",
+    rec: "Ask for: white background #FFFFFF, near-black text #111318, purple accent #7C3AED. Headings in Sora (bold), body in Inter. 14px radius, generous whitespace, one big hero statement.",
+    recM: "တောင်းဆိုရန် - အဖြူရောင် Background #FFFFFF၊ အနက်နီးပါး စာသား #111318၊ ခရမ်းရောင် Accent #7C3AED။ ခေါင်းစဉ်များအတွက် Sora (Bold)၊ Body အတွက် Inter သုံးပါ။ 14px ထောင့်ကွေးနှင့် ဗလာနေရာ ကျယ်ကျယ်ချန်ပြီး Hero စာကြောင်းကြီးတစ်ကြောင်း ထားပါ။"
   },
   {
     n: "E-commerce Storefront",
@@ -652,8 +658,11 @@ export const COMBOS = [
     colors: ["#FAF6F0", "#2A2A2A", "#C1502E"],
     head: "Fraunces",
     body: "Inter",
+    radius: 10,
     e: "A serif heading signals craft and quality; a plain sans body keeps product specs fast to scan.",
-    m: "Serif ခေါင်းစဉ်ဖောင့်က လက်မှုပညာဆန်မှုနှင့် အရည်အသွေးကို ဖော်ပြပြီး Sans Body ဖောင့်က ကုန်ပစ္စည်း အချက်အလက်များကို လျင်မြန်စွာ ဖတ်ရှုနိုင်စေသည်။"
+    m: "Serif ခေါင်းစဉ်ဖောင့်က လက်မှုပညာဆန်မှုနှင့် အရည်အသွေးကို ဖော်ပြပြီး Sans Body ဖောင့်က ကုန်ပစ္စည်း အချက်အလက်များကို လျင်မြန်စွာ ဖတ်ရှုနိုင်စေသည်။",
+    rec: "Ask for: cream background #FAF6F0, charcoal text #2A2A2A, terracotta accent #C1502E. Headings in Fraunces (serif), body in Inter. 10px radius, product-grid friendly spacing.",
+    recM: "တောင်းဆိုရန် - ခရင်မ်ရောင် Background #FAF6F0၊ ခေါင်းလောင်းရောင် စာသား #2A2A2A၊ Terracotta Accent #C1502E။ ခေါင်းစဉ်များအတွက် Fraunces Serif ဖောင့်၊ Body အတွက် Inter သုံးပါ။ 10px ထောင့်ကွေးနှင့် ကုန်ပစ္စည်း Grid အတွက် သင့်တော်သော အကွာအဝေး။"
   },
   {
     n: "Portfolio / Personal site",
@@ -662,8 +671,11 @@ export const COMBOS = [
     colors: ["#F7F5F2", "#1A1A1A", "#D8831B"],
     head: "Instrument Serif",
     body: "IBM Plex Mono",
+    radius: 4,
     e: "A serif/mono pairing reads as edited and considered, not templated - keep the mono for labels and metadata, not paragraphs.",
-    m: "Serif + Mono ပေါင်းစပ်မှုသည် Template တစ်ခုလို မဟုတ်ဘဲ စနစ်တကျ တည်းဖြတ်ထားသလို ခံစားရစေသည် - Mono ကို Label နှင့် Metadata အတွက်သာ ထားပါ၊ စာပိုဒ်များအတွက် မသုံးပါနှင့်။"
+    m: "Serif + Mono ပေါင်းစပ်မှုသည် Template တစ်ခုလို မဟုတ်ဘဲ စနစ်တကျ တည်းဖြတ်ထားသလို ခံစားရစေသည် - Mono ကို Label နှင့် Metadata အတွက်သာ ထားပါ၊ စာပိုဒ်များအတွက် မသုံးပါနှင့်။",
+    rec: "Ask for: off-white background #F7F5F2, ink text #1A1A1A, one personal accent (here #D8831B). Headings in Instrument Serif italic, labels/metadata in IBM Plex Mono. 4px radius, editorial spacing.",
+    recM: "တောင်းဆိုရန် - အဖြူနီးပါး Background #F7F5F2၊ Ink စာသား #1A1A1A၊ ကိုယ်ပိုင် Accent တစ်ခု (ဥပမာ #D8831B)။ ခေါင်းစဉ်များအတွက် Instrument Serif Italic၊ Label/Metadata အတွက် IBM Plex Mono သုံးပါ။ 4px ထောင့်ကွေးနှင့် Editorial စတိုင် အကွာအဝေး။"
   },
   {
     n: "Fintech Mobile App",
@@ -672,8 +684,11 @@ export const COMBOS = [
     colors: ["#0B1F4D", "#FFFFFF", "#17C3A2"],
     head: "Inter",
     body: "Inter",
+    radius: 16,
     e: "One type family end to end keeps a small screen calm; the mint accent signals growth without shouting.",
-    m: "အစအဆုံး Font Family တစ်မျိုးတည်း သုံးခြင်းက မျက်နှာပြင်သေးသေးလေးကို ငြိမ်သက်စေပြီး Mint အရောင် ပေါ်လွင်ချက်က ဆူညံသလို မဟုတ်ဘဲ ကြီးထွားမှုကို ညွှန်ပြသည်။"
+    m: "အစအဆုံး Font Family တစ်မျိုးတည်း သုံးခြင်းက မျက်နှာပြင်သေးသေးလေးကို ငြိမ်သက်စေပြီး Mint အရောင် ပေါ်လွင်ချက်က ဆူညံသလို မဟုတ်ဘဲ ကြီးထွားမှုကို ညွှန်ပြသည်။",
+    rec: "Ask for: navy background #0B1F4D, white text, mint accent #17C3A2. Inter for both headings and body (semibold headings). 16px radius on cards, generous tap-target spacing.",
+    recM: "တောင်းဆိုရန် - Navy Background #0B1F4D၊ အဖြူရောင် စာသား၊ Mint Accent #17C3A2။ ခေါင်းစဉ်နှင့် Body နှစ်ခုလုံးအတွက် Inter (ခေါင်းစဉ်ကို Semibold) သုံးပါ။ ကတ်ပြားများကို 16px ထောင့်ကွေးဖြင့် နှိပ်ရလွယ်သော အကွာအဝေး ထားပါ။"
   },
   {
     n: "Health & Wellness App",
@@ -682,8 +697,11 @@ export const COMBOS = [
     colors: ["#7FA98C", "#FBF7F0", "#F4845F"],
     head: "Nunito",
     body: "Nunito",
+    radius: 20,
     e: "Rounded letterforms read as gentle rather than clinical - important when the content is about someone's body or mind.",
-    m: "အနားကွေးသော စာလုံးပုံစံများသည် ဆေးဝါးဆန်သည့်အစား နူးညံ့သိမ်မွေ့စွာ ခံစားရစေသည် - ကိုယ်ခန္ဓာ သို့မဟုတ် စိတ်ပိုင်းဆိုင်ရာ အကြောင်းအရာများအတွက် အရေးကြီးသည်။"
+    m: "အနားကွေးသော စာလုံးပုံစံများသည် ဆေးဝါးဆန်သည့်အစား နူးညံ့သိမ်မွေ့စွာ ခံစားရစေသည် - ကိုယ်ခန္ဓာ သို့မဟုတ် စိတ်ပိုင်းဆိုင်ရာ အကြောင်းအရာများအတွက် အရေးကြီးသည်။",
+    rec: "Ask for: sage background #7FA98C, cream surface #FBF7F0, coral accent #F4845F. Nunito for both headings and body. 20px radius, soft rounded cards, plenty of breathing room.",
+    recM: "တောင်းဆိုရန် - Sage Background #7FA98C၊ ခရင်မ်ရောင် Surface #FBF7F0၊ Coral Accent #F4845F။ ခေါင်းစဉ်နှင့် Body နှစ်ခုလုံးအတွက် Nunito သုံးပါ။ 20px ထောင့်ကွေးနှင့် ပျော့ပျောင်းသော ကတ်ပြားများ၊ လွတ်လပ်စွာ အသက်ရှူနိုင်သော နေရာများ ထားပါ။"
   },
   {
     n: "Food Delivery App",
@@ -692,8 +710,11 @@ export const COMBOS = [
     colors: ["#E23744", "#2A2A2A", "#FFC93C"],
     head: "Poppins",
     body: "Inter",
+    radius: 14,
     e: "A geometric sans headline reads fast on a thumb-sized card; the warm red-and-yellow pairing is a proven appetite trigger.",
-    m: "Geometric Sans ခေါင်းစဉ်ဖောင့်က လက်မလောက်သာသော ကတ်ပြားပေါ်တွင် မြန်ဆန်စွာ ဖတ်နိုင်ပြီး နွေးထွေးသော အနီ-အဝါ ပေါင်းစပ်မှုသည် စားချင်စိတ် ဖြစ်စေကြောင်း သက်သေပြထားသည်။"
+    m: "Geometric Sans ခေါင်းစဉ်ဖောင့်က လက်မလောက်သာသော ကတ်ပြားပေါ်တွင် မြန်ဆန်စွာ ဖတ်နိုင်ပြီး နွေးထွေးသော အနီ-အဝါ ပေါင်းစပ်မှုသည် စားချင်စိတ် ဖြစ်စေကြောင်း သက်သေပြထားသည်။",
+    rec: "Ask for: white surface, charcoal text #2A2A2A, red #E23744 and yellow #FFC93C accents. Poppins for headings, Inter for body. 14px radius, bold appetite-driving imagery.",
+    recM: "တောင်းဆိုရန် - အဖြူရောင် Surface၊ ခေါင်းလောင်းရောင် စာသား #2A2A2A၊ အနီ #E23744 နှင့် အဝါ #FFC93C Accent များ။ ခေါင်းစဉ်များအတွက် Poppins၊ Body အတွက် Inter သုံးပါ။ 14px ထောင့်ကွေးနှင့် စားချင်စဖွယ် ပုံရိပ်များ ထင်ရှားစွာ ထားပါ။"
   },
   {
     n: "Developer Tool",
@@ -702,8 +723,11 @@ export const COMBOS = [
     colors: ["#0D1117", "#C9D1D9", "#3FB950"],
     head: "JetBrains Mono",
     body: "Inter",
+    radius: 6,
     e: "Mono signals \"built for engineers\" - reserve it for labels and code, and let a plain sans carry the paragraphs.",
-    m: "Mono ဖောင့်သည် \"အင်ဂျင်နီယာများအတွက် တည်ဆောက်ထား\" ဟု အချက်ပြသည် - Label နှင့် Code များအတွက်သာ သုံးပြီး စာပိုဒ်များကို Sans ဖောင့်ဖြင့် ထားပါ။"
+    m: "Mono ဖောင့်သည် \"အင်ဂျင်နီယာများအတွက် တည်ဆောက်ထား\" ဟု အချက်ပြသည် - Label နှင့် Code များအတွက်သာ သုံးပြီး စာပိုဒ်များကို Sans ဖောင့်ဖြင့် ထားပါ။",
+    rec: "Ask for: near-black background #0D1117, light grey text #C9D1D9, green accent #3FB950. JetBrains Mono for labels/code, Inter for body copy. 6px radius, dense and information-first.",
+    recM: "တောင်းဆိုရန် - အနက်နီးပါး Background #0D1117၊ မီးခိုးရောင် စာသား #C9D1D9၊ အစိမ်းရောင် Accent #3FB950။ Label/Code အတွက် JetBrains Mono၊ Body အတွက် Inter သုံးပါ။ 6px ထောင့်ကွေးနှင့် သတင်းအချက်အလက် သိပ်သည်းသော Layout။"
   },
   {
     n: "Kids Learning App",
@@ -712,8 +736,11 @@ export const COMBOS = [
     colors: ["#E63946", "#457B9D", "#F1C40F"],
     head: "Baloo 2",
     body: "Nunito",
+    radius: 24,
     e: "High saturation and chunky, rounded letterforms read as playful and stay legible for early readers.",
-    m: "အရောင် ပြင်းထန်မှုနှင့် ထူထဲအနားကွေးသော စာလုံးပုံစံများသည် ကစားချင်စဖွယ် ခံစားရစေပြီး စာစတင်ဖတ်နေသူများအတွက်ပါ ဖတ်ရလွယ်ကူသည်။"
+    m: "အရောင် ပြင်းထန်မှုနှင့် ထူထဲအနားကွေးသော စာလုံးပုံစံများသည် ကစားချင်စဖွယ် ခံစားရစေပြီး စာစတင်ဖတ်နေသူများအတွက်ပါ ဖတ်ရလွယ်ကူသည်။",
+    rec: "Ask for: white background, red/blue/yellow primaries (#E63946 / #457B9D / #F1C40F). Baloo 2 for headings, Nunito for body. 24px radius, oversized tappable buttons.",
+    recM: "တောင်းဆိုရန် - အဖြူရောင် Background၊ အနီ/အပြာ/အဝါ ပင်မအရောင်များ (#E63946/#457B9D/#F1C40F)။ ခေါင်းစဉ်များအတွက် Baloo 2၊ Body အတွက် Nunito သုံးပါ။ 24px ထောင့်ကွေးနှင့် ကြီးမားသော နှိပ်ရလွယ်သည့် ခလုတ်များ။"
   },
   {
     n: "Editorial / News site",
@@ -722,8 +749,11 @@ export const COMBOS = [
     colors: ["#FFFFFF", "#111111", "#B3261E"],
     head: "Source Serif 4",
     body: "Source Sans 3",
+    radius: 0,
     e: "The classic serif-heading, sans-body split mirrors print and keeps long-form reading comfortable for an hour, not a minute.",
-    m: "ရိုးရာ Serif ခေါင်းစဉ် + Sans Body ခွဲခြားမှုသည် ပုံနှိပ်စာအုပ်ဆန်ပြီး တစ်မိနစ်သာမက တစ်နာရီလုံး ဖတ်ရှုနေရလည်း အဆင်ပြေစေသည်။"
+    m: "ရိုးရာ Serif ခေါင်းစဉ် + Sans Body ခွဲခြားမှုသည် ပုံနှိပ်စာအုပ်ဆန်ပြီး တစ်မိနစ်သာမက တစ်နာရီလုံး ဖတ်ရှုနေရလည်း အဆင်ပြေစေသည်။",
+    rec: "Ask for: white background, near-black text #111111, restrained red accent #B3261E. Source Serif 4 for headings, Source Sans 3 for body. Square (0px) corners, classic print-style columns.",
+    recM: "တောင်းဆိုရန် - အဖြူရောင် Background၊ အနက်နီးပါး စာသား #111111၊ ထိန်းညှိထားသော အနီရောင် Accent #B3261E။ ခေါင်းစဉ်များအတွက် Source Serif 4၊ Body အတွက် Source Sans 3 သုံးပါ။ ထောင့်မှန် (0px) နှင့် ရိုးရာ ပုံနှိပ်စတိုင် ကော်လံများ။"
   }
 ];
 
@@ -838,6 +868,7 @@ export const UI = {
     platBoth: "Web + mobile",
     headLbl: "Heading",
     bodyLbl: "Body",
+    recLbl: "How to ask for it",
     closer: "<b>If you only remember ten:</b> Traditional, Minimalism, Maximalism, Skeuomorphism, Flat, Material, Neumorphism, Glassmorphism, Neo-brutalism, Bento. Those cover almost everything a client or a designer will actually say out loud.",
     sig: "30 specimens<br>4 families<br>rendered in CSS"
   },
@@ -876,6 +907,7 @@ export const UI = {
     platBoth: "ဝဘ် + မိုဘိုင်း",
     headLbl: "ခေါင်းစဉ်ဖောင့်",
     bodyLbl: "Body ဖောင့်",
+    recLbl: "ဘယ်လို တောင်းဆိုရမလဲ",
     closer: "<b>၁၀ ခုမျှသာ မှတ်သားမည်ဆိုပါက -</b> Traditional, Minimalism, Maximalism, Skeuomorphism, Flat, Material, Neumorphism, Glassmorphism, Neo-brutalism, Bento တို့ဖြစ်ပါသည်။ ဒါများသည် အပ်နှံသူ သို့မဟုတ် ဒီဇိုင်နာတစ်ဦး ပြောဆိုမည့် စတိုင်အများစုကို လွှမ်းခြုံနိုင်ပါသည်။",
     sig: "နမူနာ ၃၀<br>အုပ်စု ၄ မျိုး<br>CSS ဖြင့် ဖန်တီးထားသည်"
   }
