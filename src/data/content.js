@@ -294,6 +294,36 @@ export const VOCAB = [
  ["gestalt","အုပ်စုမြင်ခြင်း","How the eye groups shapes into wholes automatically.","မျက်လုံးက ပုံသဏ္ဌာန်တွေကို အလိုအလျောက် အုပ်စုဖွဲ့ မြင်တဲ့ သဘော။"]
 ];
 
+export const LIBRARIES = [
+ {n:"Aceternity UI", url:"https://ui.aceternity.com",
+  fe:"Hero sections, backgrounds, 3D effects", fm:"ဟီးရိုးကဏ္ဍ၊ နောက်ခံ၊ 3D အထူးပြုမှုများ",
+  se:"Very flashy", sm:"အလွန် တောက်ပတယ်"},
+ {n:"Magic UI", url:"https://magicui.design",
+  fe:"Animated marketing UI", fm:"ကြော်ငြာ UI လှုပ်ရှားမှုများ",
+  se:"Polished", sm:"တင့်တယ်တယ်"},
+ {n:"21st.dev", url:"https://21st.dev",
+  fe:"Huge component marketplace", fm:"အကြီးမားဆုံး component ဈေးကွက်",
+  se:"Many styles", sm:"ပုံစံများစွာ"},
+ {n:"Cult UI", url:"https://www.cult-ui.com",
+  fe:"Modern interactive components", fm:"ခေတ်မီ အပြန်အလှန် တုံ့ပြန်တဲ့ component များ",
+  se:"Clean + animated", sm:"သန့်ရှင်း + လှုပ်ရှားတယ်"},
+ {n:"Motion Primitives", url:"https://motion-primitives.com",
+  fe:"Text/hover/transitions", fm:"စာသား/hover/အသွင်ပြောင်းမှုများ",
+  se:"Minimal", sm:"အနည်းဆုံးပုံစံ"},
+ {n:"Animata", url:"https://animata.design",
+  fe:"Micro-interactions", fm:"အသေးစား တုံ့ပြန်မှုများ",
+  se:"Lightweight", sm:"ပေါ့ပါးတယ်"},
+ {n:"Origin UI", url:"https://originui.com",
+  fe:"General UI components", fm:"ယေဘုယျ UI component များ",
+  se:"Clean/app UI", sm:"သန့်ရှင်း/အက်ပ် UI"},
+ {n:"Kokonut UI", url:"https://kokonutui.com",
+  fe:"Animated backgrounds + AI UI", fm:"လှုပ်ရှားနေတဲ့ နောက်ခံ + AI UI",
+  se:"Modern", sm:"ခေတ်မီတယ်"},
+ {n:"ReUI", url:"https://reui.io",
+  fe:"Large shadcn component collection", fm:"shadcn component စုစည်းမှု ကြီးကြီးမားမား",
+  se:"Professional", sm:"ပရော်ဖက်ရှင်နယ်"}
+];
+
 export const UI = {
  en:{kick:"Visual reference", kick2:"30 specimens / 4 families",
   title:"Design Style Swatchbook",
@@ -305,6 +335,8 @@ export const UI = {
   close:"Close",
   method:"Method words", methodP:"Often mixed in with the list above, but these are not looks at all - they describe how the work gets done.",
   vocabH:"The vocabulary underneath", vocabP:"Every style above is built from the same handful of ideas. When a layout feels wrong, one of these is usually the reason.",
+  libH:"Component libraries", libP:"Nine places to borrow ready-made pieces from instead of building every button by hand - each with its own personality.",
+  visit:"Visit",
   closer:"<b>If you only remember ten:</b> Traditional, Minimalism, Maximalism, Skeuomorphism, Flat, Material, Neumorphism, Glassmorphism, Neo-brutalism, Bento. Those cover almost everything a client or a designer will actually say out loud.",
   sig:"30 specimens<br>4 families<br>rendered in CSS"},
  my:{kick:"မြင်သာတဲ့ လက်စွဲ", kick2:"နမူနာ ၃၀ / အုပ်စု ၄ မျိုး",
@@ -317,6 +349,8 @@ export const UI = {
   close:"ပိတ်မည်",
   method:"လုပ်ငန်းစဉ် ဝေါဟာရများ", methodP:"အပေါ်က စာရင်းထဲ ရောပါလေ့ရှိပေမယ့် ဒါတွေက အသွင်အပြင် မဟုတ်ပါဘူး - အလုပ်ကို ဘယ်လို လုပ်ရမလဲဆိုတာကို ပြောတာပါ။",
   vocabH:"အခြေခံ ဒီဇိုင်း ဝေါဟာရ", vocabP:"အပေါ်က ပုံစံအားလုံးဟာ ဒီအခြေခံ သဘောတရား နည်းနည်းလေးကနေပဲ တည်ဆောက်ထားတာပါ။ layout တစ်ခု ဆိုးနေတယ်လို့ ခံစားရရင် ဒီထဲက တစ်ခုခု လွဲနေလို့ ဖြစ်တတ်တယ်။",
+  libH:"Component Library များ", libP:"ခလုတ်တစ်ခုချင်း ကိုယ်တိုင် ရေးနေမယ့်အစား အသင့်ပြုလုပ်ထားတဲ့ အပိုင်းများကို ငှားသုံးလို့ရတဲ့ နေရာ ကိုးခု - တစ်ခုစီမှာ သူ့ပင်ကိုယ် ဟန်ချက် ရှိတယ်။",
+  visit:"ကြည့်ရန်",
   closer:"<b>ဆယ်ခုပဲ မှတ်မယ်ဆိုရင်</b> - Traditional, Minimalism, Maximalism, Skeuomorphism, Flat, Material, Neumorphism, Glassmorphism, Neo-brutalism, Bento။ ဒါတွေက ဖောက်သည် ဒါမှမဟုတ် ဒီဇိုင်နာတစ်ယောက် ပြောလေ့ရှိတာ အားလုံးနီးပါး ခြုံမိပါတယ်။",
   sig:"နမူနာ ၃၀<br>အုပ်စု ၄ မျိုး<br>CSS နဲ့ ဆွဲထားသည်"}
 };

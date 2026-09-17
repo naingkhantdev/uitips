@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { STYLES, GROUPS, RAIL, METHOD, VOCAB, UI } from "./data/content.js";
+import { STYLES, GROUPS, RAIL, METHOD, VOCAB, LIBRARIES, UI } from "./data/content.js";
 import Topbar from "./components/Topbar.jsx";
 import Masthead from "./components/Masthead.jsx";
 import SectionHead from "./components/SectionHead.jsx";
@@ -87,6 +87,36 @@ export default function App() {
                   {my ? word[3] : word[2]}
                 </span>
               </div>
+            ))}
+          </div>
+        </section>
+
+        <section className="pt-14">
+          <SectionHead lang={lang} title={t.libH} count="09" intro={t.libP} />
+          <div className="grid grid-cols-[repeat(auto-fill,minmax(230px,1fr))] gap-4">
+            {LIBRARIES.map((lib) => (
+              <a
+                key={lib.n}
+                href={lib.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="nm-raise-sm nm-lift group flex flex-col gap-2 p-4"
+              >
+                <div className="flex items-baseline justify-between gap-2">
+                  <h3 className="m-0 text-[14.5px] leading-tight font-semibold tracking-[-.01em] text-ink">
+                    {lib.n}
+                  </h3>
+                  <span className="label shrink-0 after:ml-1 after:content-['↗'] group-hover:text-ink">
+                    {t.visit}
+                  </span>
+                </div>
+                <p className={`m-0 text-[13px] leading-[1.5] text-ink-2 ${my ? "my" : ""}`}>
+                  {my ? lib.fm : lib.fe}
+                </p>
+                <span className="num mt-auto pt-1 font-mono text-[10.5px] tracking-[.06em] text-ink-3">
+                  {my ? lib.sm : lib.se}
+                </span>
+              </a>
             ))}
           </div>
         </section>
