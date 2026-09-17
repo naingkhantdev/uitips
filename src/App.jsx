@@ -97,50 +97,71 @@ export default function App() {
         {tab === "combos" && (
           <section className="pt-14">
             <SectionHead lang={lang} title={t.combosH} count={pad(COMBOS.length)} intro={t.combosP} />
-            <div className="grid grid-cols-[repeat(auto-fill,minmax(280px,1fr))] gap-4">
-              {COMBOS.map((c) => (
-                <div key={c.n} className="nm-raise-sm flex flex-col gap-3 p-4">
-                  <div className="flex items-start justify-between gap-2">
-                    <b className={`m-0 text-[13.5px] leading-[1.3] font-semibold text-ink ${my ? "my text-[14px]" : ""}`}>
-                      {my ? c.mn : c.n}
-                    </b>
-                    <span
-                      className={`nm-sink shrink-0 px-2 py-1 whitespace-nowrap text-ink-3 ${
-                        my ? "my text-[10.5px]" : "font-mono text-[9.5px] tracking-[.08em] uppercase"
-                      }`}
-                    >
-                      {c.plat === "web" ? t.platWeb : c.plat === "mobile" ? t.platMobile : t.platBoth}
+
+            {["web", "mobile"].map((platform) => {
+              const items = COMBOS.filter((c) => c.plat === platform || c.plat === "both");
+              return (
+                <div key={platform} className="mt-9 first:mt-0">
+                  <h3
+                    className={`m-0 mb-4 flex items-center gap-2.5 border-b border-rule pb-2.5 ${
+                      my ? "my text-[15px] font-semibold text-ink" : "text-[13px] font-semibold tracking-[-.01em] text-ink"
+                    }`}
+                  >
+                    {platform === "web" ? t.platWeb : t.platMobile}
+                    <span className="num nm-sink px-2 py-1 font-mono text-[10px] tracking-[.08em] text-ink-3">
+                      {pad(items.length)}
                     </span>
-                  </div>
+                  </h3>
 
-                  <ComboPreview combo={c} />
+                  <div className="grid grid-cols-[repeat(auto-fill,minmax(230px,1fr))] gap-4">
+                    {items.map((c) => (
+                      <div key={`${c.n}-${platform}`} className="nm-raise-sm flex flex-col gap-3 p-4">
+                        <div className="flex items-start justify-between gap-2">
+                          <b className={`m-0 text-[13.5px] leading-[1.3] font-semibold text-ink ${my ? "my text-[14px]" : ""}`}>
+                            {my ? c.mn : c.n}
+                          </b>
+                          {c.plat === "both" && (
+                            <span
+                              className={`nm-sink shrink-0 px-2 py-1 whitespace-nowrap text-ink-3 ${
+                                my ? "my text-[10.5px]" : "font-mono text-[9.5px] tracking-[.08em] uppercase"
+                              }`}
+                            >
+                              {t.platBoth}
+                            </span>
+                          )}
+                        </div>
 
-                  <div className="flex items-center gap-1.5">
-                    {c.colors.map((hex) => (
-                      <span
-                        key={hex}
-                        className="h-3.5 w-3.5 rounded-full shadow-[inset_0_0_0_1px_var(--nm-rule)]"
-                        style={{ background: hex }}
-                      />
+                        <ComboPreview combo={c} variant={platform} />
+
+                        <div className="flex items-center gap-1.5">
+                          {c.colors.map((hex) => (
+                            <span
+                              key={hex}
+                              className="h-3.5 w-3.5 rounded-full shadow-[inset_0_0_0_1px_var(--nm-rule)]"
+                              style={{ background: hex }}
+                            />
+                          ))}
+                          <span className="num ml-1 font-mono text-[10px] tracking-[.02em] text-ink-3">
+                            {t.headLbl}: {c.head} · {t.bodyLbl}: {c.body}
+                          </span>
+                        </div>
+
+                        <span className={`text-[12.5px] leading-[1.5] text-ink-2 ${my ? "my" : ""}`}>
+                          {my ? c.m : c.e}
+                        </span>
+
+                        <div className="nm-sink flex flex-col gap-1 px-3 py-2.5">
+                          <span className={`label ${my ? "label-my" : ""}`}>{t.recLbl}</span>
+                          <p className={`m-0 text-[11.5px] leading-[1.5] text-ink-2 ${my ? "my" : ""}`}>
+                            {my ? c.recM : c.rec}
+                          </p>
+                        </div>
+                      </div>
                     ))}
-                    <span className="num ml-1 font-mono text-[10px] tracking-[.02em] text-ink-3">
-                      {t.headLbl}: {c.head} · {t.bodyLbl}: {c.body}
-                    </span>
-                  </div>
-
-                  <span className={`text-[12.5px] leading-[1.5] text-ink-2 ${my ? "my" : ""}`}>
-                    {my ? c.m : c.e}
-                  </span>
-
-                  <div className="nm-sink flex flex-col gap-1 px-3 py-2.5">
-                    <span className={`label ${my ? "label-my" : ""}`}>{t.recLbl}</span>
-                    <p className={`m-0 text-[11.5px] leading-[1.5] text-ink-2 ${my ? "my" : ""}`}>
-                      {my ? c.recM : c.rec}
-                    </p>
                   </div>
                 </div>
-              ))}
-            </div>
+              );
+            })}
           </section>
         )}
 
