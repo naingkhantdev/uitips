@@ -832,6 +832,213 @@ export const LIBRARIES = [
   }
 ];
 
+/* Visual effects. `g` indexes FX_GROUPS; `id` picks the live preview in
+   styles/effects.css. `css` names the properties that actually build it,
+   so the reader knows what to search for. */
+export const FX_GROUPS = [
+  { e: "Light", m: "အလင်း" },
+  { e: "Flash & motion", m: "လျှပ်တပြက် နှင့် လှုပ်ရှားမှု" },
+  { e: "Atmosphere & texture", m: "လေထုအငွေ့ နှင့် မျက်နှာပြင်အသား" }
+];
+
+export const EFFECTS = [
+  {
+    id: "leak",
+    g: 0,
+    n: "Light Leak",
+    mn: "အလင်းယိုစိမ့်မှု (Light Leak)",
+    e: "Warm orange-to-magenta light bleeding in from an edge, like a film camera with a crack in it. Instantly nostalgic and warm.",
+    m: "ဖလင်ကင်မရာ အက်ကွဲနေသကဲ့သို့ အစွန်းတစ်ဖက်မှ ယိုစိမ့်ဝင်လာသော လိမ္မော်-ပန်းခရမ်း နွေးထွေးသည့် အလင်း။ ချက်ချင်း Nostalgic ဖြစ်ပြီး နွေးထွေးစေသည်။",
+    css: "radial-gradient · mix-blend-mode: screen · filter: blur()",
+    warn: "Keep it on one edge. Leaks on every side just look like a dirty screen.",
+    warnM: "အစွန်းတစ်ဖက်တည်းတွင်သာ ထားပါ။ ဘေးလေးဖက်လုံး ယိုစိမ့်နေပါက မျက်နှာပြင် ညစ်ပေနေသကဲ့သို့ ဖြစ်သွားမည်။",
+    rec: "Ask for: a warm light-leak overlay (orange #FF7A18 fading to magenta #FF2D95) entering from the top-left corner, heavily blurred, blended with 'screen' at about 60% opacity over a dark photo or hero.",
+    recM: "တောင်းဆိုရန် - ဘယ်ဘက်အပေါ်ထောင့်မှ ဝင်လာသော နွေးထွေးသည့် Light-leak Overlay (လိမ္မော် #FF7A18 မှ ပန်းခရမ်း #FF2D95 သို့) ကို Blur များများဖြင့် 'screen' Blend၊ Opacity ၆၀% ခန့်ဖြင့် အမှောင်ရောင် ဓာတ်ပုံ သို့မဟုတ် Hero ပေါ်တွင် ထားပါ။"
+  },
+  {
+    id: "flare",
+    g: 0,
+    n: "Lens Flare",
+    mn: "မှန်ဘီလူး အလင်းပြန် (Lens Flare)",
+    e: "A bright light source with a streak and a trail of faint rings across the frame - the look of shooting straight into the sun or a stage light.",
+    m: "နေ သို့မဟုတ် စင်မြင့်မီးကို တိုက်ရိုက် ရိုက်ယူသကဲ့သို့ တောက်ပသော အလင်းအရင်းအမြစ်၊ အလင်းတန်းနှင့် ဘောင်ကိုဖြတ်၍ ဖျော့ဖျော့ အကွင်းများ။",
+    css: "radial-gradient (stacked) · linear-gradient streak · blur()",
+    warn: "Place the source away from the headline - the flare pulls the eye harder than the text does.",
+    warnM: "အလင်းအရင်းအမြစ်ကို ခေါင်းစဉ်နှင့် ဝေးဝေးထားပါ - Flare က စာသားထက် မျက်လုံးကို ပိုဆွဲဆောင်သည်။",
+    rec: "Ask for: a cinematic lens flare - a white-hot point top-right with a thin horizontal blue anamorphic streak and 3-4 faint circular ghosts running diagonally toward the bottom-left, on a deep navy background.",
+    recM: "တောင်းဆိုရန် - ညာဘက်အပေါ်တွင် အဖြူရောင် တောက်ပသော အမှတ်၊ ပါးလွှာသော အလျားလိုက် အပြာရောင် Anamorphic အလင်းတန်းနှင့် ဘယ်အောက်ဘက်သို့ ထောင့်ဖြတ်ဆင်းသွားသော ဖျော့ဖျော့ အဝိုင်း ၃-၄ ခုပါသည့် ရုပ်ရှင်ဆန်သော Lens Flare ကို Navy အမှောင်ရောင် နောက်ခံပေါ်တွင် ထားပါ။"
+  },
+  {
+    id: "neon",
+    g: 0,
+    n: "Neon Glow",
+    mn: "နီယွန် အလင်းတောက် (Neon Glow)",
+    e: "Text and outlines that seem to emit light, with a soft colored halo around them. Gaming, nightlife, crypto and anything after dark.",
+    m: "ပတ်လည်တွင် အရောင်ပါသော အလင်းဝန်းဖြင့် အလင်းထုတ်လွှတ်နေသကဲ့သို့ ထင်ရသော စာသားနှင့် မျဉ်းကြောင်းများ။ ဂိမ်း၊ ညဘဝ၊ Crypto နှင့် ညဘက်ဆန်သော အရာအားလုံး။",
+    css: "text-shadow (stacked) · box-shadow · keyframes flicker",
+    warn: "Glow lowers legibility. Use it on a word or a button, never on body text.",
+    warnM: "Glow က ဖတ်ရလွယ်မှုကို လျော့စေသည်။ စကားလုံးတစ်လုံး သို့မဟုတ် ခလုတ်တစ်ခုတွင်သာ သုံးပါ၊ Body စာသားတွင် ဘယ်တော့မှ မသုံးပါနှင့်။",
+    rec: "Ask for: neon glow on the heading and primary button - white text with stacked pink #FF2D95 and cyan #22D3EE text-shadows (4px, 12px, 28px), a thin cyan outline button with a matching outer glow, on near-black #0B0B14. Optional subtle flicker.",
+    recM: "တောင်းဆိုရန် - ခေါင်းစဉ်နှင့် အဓိကခလုတ်တွင် Neon Glow - ပန်း #FF2D95 နှင့် စိမ်းပြာ #22D3EE Text-shadow များ (4px, 12px, 28px) ထပ်ထားသော အဖြူရောင်စာ၊ ကိုက်ညီသော အပြင် Glow ပါသည့် ပါးလွှာသော စိမ်းပြာ Outline ခလုတ်ကို အနက်နီးပါး #0B0B14 ပေါ်တွင်။ မသိမသာ တဖျပ်ဖျပ်လင်းမှု ထည့်နိုင်သည်။"
+  },
+  {
+    id: "spot",
+    g: 0,
+    n: "Spotlight",
+    mn: "စပေါ့လိုက် (Spotlight)",
+    e: "A soft cone of light falling on a dark stage, pointing at the one thing that matters. Often follows the cursor on landing pages.",
+    m: "အမှောင်ထဲရှိ စင်မြင့်ပေါ်သို့ ကျရောက်နေသော ပျော့ပျောင်းသည့် အလင်းကတော့ပုံ - အရေးကြီးသော အရာတစ်ခုတည်းကို ညွှန်ပြသည်။ Landing Page များတွင် Cursor နောက်သို့ လိုက်လေ့ရှိသည်။",
+    css: "radial-gradient (ellipse) · mask-image · pointer tracking (optional)",
+    warn: "Everything outside the light must still pass contrast - dim, don't hide.",
+    warnM: "အလင်းအပြင်ဘက်ရှိ အရာများသည်လည်း Contrast ပြည့်မီရမည် - မှိန်ရုံသာ မှိန်ပါ၊ ဖုံးမထားပါနှင့်။",
+    rec: "Ask for: a spotlight hero - black #0A0A0A background, a soft white elliptical light (about 18% opacity) falling from the top center onto the headline. Optionally make it follow the mouse on desktop.",
+    recM: "တောင်းဆိုရန် - Spotlight Hero - အနက် #0A0A0A နောက်ခံ၊ အပေါ်အလယ်မှ ခေါင်းစဉ်ပေါ်သို့ ကျသော ပျော့ပျောင်းသည့် အဖြူရောင် ဘဲဥပုံ အလင်း (Opacity ၁၈% ခန့်)။ Desktop တွင် Mouse နောက် လိုက်စေနိုင်သည်။"
+  },
+  {
+    id: "rays",
+    g: 0,
+    n: "Light Rays (God Rays)",
+    mn: "အလင်းတန်းများ (God Rays)",
+    e: "Beams of light fanning out from a corner, as if through a window or clouds. Dramatic, hopeful, a little epic.",
+    m: "ပြတင်းပေါက် သို့မဟုတ် တိမ်များကြားမှ ဖြာထွက်လာသကဲ့သို့ ထောင့်တစ်ဖက်မှ ပန်ကာပုံ ဖြန့်ကျက်နေသော အလင်းတန်းများ။ ဇာတ်လမ်းဆန်ပြီး မျှော်လင့်ချက် ပြည့်ဝသည်။",
+    css: "repeating-conic-gradient · mask-image (radial fade) · blur()",
+    warn: "Rays should fade out before they reach the text, or they turn into stripes.",
+    warnM: "အလင်းတန်းများသည် စာသားသို့ မရောက်မီ မှိန်ပျောက်သွားရမည်၊ မဟုတ်ပါက အစင်းကြောင်းများ ဖြစ်သွားမည်။",
+    rec: "Ask for: soft god rays - thin pale-gold light beams fanning from the top-left corner over a deep purple #1A1030 background, blurred slightly and faded out with a radial mask before the middle of the section; very slow rotation.",
+    recM: "တောင်းဆိုရန် - ပျော့ပျောင်းသော God Rays - ခရမ်းရင့် #1A1030 နောက်ခံပေါ်တွင် ဘယ်အပေါ်ထောင့်မှ ဖြာထွက်သော ပါးလွှာသည့် ရွှေဖျော့ရောင် အလင်းတန်းများ၊ အနည်းငယ် Blur လုပ်ပြီး ကဏ္ဍအလယ်မရောက်မီ Radial Mask ဖြင့် မှိန်ပျောက်စေပါ။ အလွန်နှေးသော လည်ပတ်မှု။"
+  },
+  {
+    id: "bokeh",
+    g: 0,
+    n: "Bokeh",
+    mn: "ဘိုကေ အဝိုင်းများ (Bokeh)",
+    e: "Out-of-focus circles of light floating in the background, like city lights behind a portrait. Soft, festive, dreamy.",
+    m: "ပုံတူဓာတ်ပုံ နောက်ကွယ်ရှိ မြို့ပြမီးများကဲ့သို့ နောက်ခံတွင် ပျံ့လွင့်နေသော Focus မမိသည့် အလင်းအဝိုင်းများ။ ပျော့ပျောင်း၊ ပွဲတော်ဆန်ပြီး အိပ်မက်ဆန်သည်။",
+    css: "radial-gradient circles · filter: blur() · slow translate keyframes",
+    warn: "Vary the sizes and blur amounts - identical circles read as polka dots, not depth.",
+    warnM: "အရွယ်အစားနှင့် Blur ပမာဏကို ကွဲပြားစေပါ - တူညီနေသော အဝိုင်းများက အနက်ရှိုင်းမှုမဟုတ်ဘဲ အစက်အပြောက်ဒီဇိုင်းလို ဖြစ်သွားမည်။",
+    rec: "Ask for: a bokeh background - 8-12 blurred light circles in warm gold and soft teal, mixed sizes (20-90px) and blur levels, drifting slowly over a dark teal #0C2A2E gradient.",
+    recM: "တောင်းဆိုရန် - Bokeh နောက်ခံ - နွေးထွေးသော ရွှေရောင်နှင့် ပျော့ပျောင်းသော Teal ရောင် Blur လုပ်ထားသည့် အလင်းအဝိုင်း ၈-၁၂ ခု၊ အရွယ်အစား (20-90px) နှင့် Blur အဆင့် ရောနှော၍ Teal အမှောင် #0C2A2E Gradient ပေါ်တွင် နှေးကွေးစွာ ပျံ့လွင့်နေစေပါ။"
+  },
+  {
+    id: "shine",
+    g: 1,
+    n: "Shine Sweep",
+    mn: "အရောင်လက် ဖြတ်ပြေးမှု (Shine Sweep)",
+    e: "A diagonal band of light sliding across a card or button, like light catching polished metal. Says 'premium' or 'new' without a word.",
+    m: "ပွတ်တိုက်ထားသော သတ္တုပေါ် အလင်းထိသကဲ့သို့ ကတ် သို့မဟုတ် ခလုတ်ပေါ်ကို ဖြတ်၍ လျှောကျသွားသော ထောင့်ဖြတ် အလင်းတန်း။ စကားမပြောဘဲ 'Premium' သို့မဟုတ် 'အသစ်' ဟု ပြောသည်။",
+    css: "linear-gradient (105deg) · transform: translateX · keyframes",
+    warn: "Once every few seconds at most. A constant sweep becomes noise.",
+    warnM: "စက္ကန့်အနည်းငယ်မှ တစ်ကြိမ်ထက် မပိုစေပါနှင့်။ အမြဲတမ်း ဖြတ်ပြေးနေပါက ဆူညံမှု ဖြစ်သွားမည်။",
+    rec: "Ask for: a shine sweep on the premium card and CTA - a 105° white gradient band (transparent → 60% white → transparent) that slides left to right once on hover, or every 4 seconds for a 'new' badge.",
+    recM: "တောင်းဆိုရန် - Premium ကတ်နှင့် CTA ခလုတ်တွင် Shine Sweep - ၁၀၅° အဖြူရောင် Gradient တန်း (ဖောက်ထွင်း → အဖြူ ၆၀% → ဖောက်ထွင်း) ကို Hover လုပ်လျှင် ဘယ်မှညာ တစ်ကြိမ် ဖြတ်ပြေးစေပါ၊ သို့မဟုတ် 'New' Badge အတွက် ၄ စက္ကန့်တစ်ကြိမ်။"
+  },
+  {
+    id: "flash",
+    g: 1,
+    n: "Camera Flash",
+    mn: "ကင်မရာ ဖလက်ရှ် (Flash)",
+    e: "A split-second white burst that fades back - a photo being taken, a moment of reveal, a success state landing.",
+    m: "ခဏတာ အဖြူရောင် ပေါက်ကွဲလင်းလက်ပြီး ပြန်မှိန်သွားခြင်း - ဓာတ်ပုံရိုက်ခြင်း၊ ထုတ်ဖော်ပြသသည့် အခိုက်အတန့်၊ အောင်မြင်ကြောင်း ပြသခြင်း။",
+    css: "opacity keyframes (fast in, slow out) · radial-gradient burst",
+    warn: "Never flash more than 3 times a second - it's a seizure risk (WCAG 2.3.1). Respect reduced-motion.",
+    warnM: "တစ်စက္ကန့်လျှင် ၃ ကြိမ်ထက် ဘယ်တော့မှ မလင်းစေပါနှင့် - တက်ခြင်းရောဂါ အန္တရာယ် ရှိသည် (WCAG 2.3.1)။ Reduced-motion ဆက်တင်ကို လေးစားပါ။",
+    rec: "Ask for: a single camera-flash transition - a white overlay that jumps to 90% opacity in 60ms then fades out over 500ms, triggered once on capture or reveal. Disabled when the user prefers reduced motion.",
+    recM: "တောင်းဆိုရန် - တစ်ကြိမ်တည်းသော Camera-flash Transition - 60ms အတွင်း Opacity ၉၀% သို့ ခုန်တက်ပြီး 500ms အတွင်း မှိန်သွားသော အဖြူရောင် Overlay၊ ဓာတ်ပုံရိုက်ချိန် သို့မဟုတ် ပြသချိန်တွင် တစ်ကြိမ်သာ။ အသုံးပြုသူက Reduced motion ရွေးထားပါက ပိတ်ထားပါ။"
+  },
+  {
+    id: "glitch",
+    g: 1,
+    n: "Glitch / Chromatic Aberration",
+    mn: "ဂလစ်ချ် / အရောင်ကွဲ (Glitch)",
+    e: "Red and cyan channels split apart, scanlines and jittering slices - a broken screen on purpose. Tech, music, cyberpunk.",
+    m: "အနီနှင့် စိမ်းပြာ ချန်နယ်များ ကွဲထွက်ခြင်း၊ Scanline များနှင့် တုန်ခါနေသော အပိုင်းများ - ရည်ရွယ်ချက်ရှိရှိ ပျက်စီးနေသော မျက်နှာပြင်။ နည်းပညာ၊ ဂီတ၊ Cyberpunk။",
+    css: "text-shadow (±2px red/cyan) · clip-path slices · steps() keyframes",
+    warn: "Glitch the headline in short bursts only; a permanently jittering word can't be read.",
+    warnM: "ခေါင်းစဉ်ကိုသာ ခဏတာ Glitch လုပ်ပါ၊ အမြဲတုန်ခါနေသော စကားလုံးကို ဖတ်၍ မရနိုင်ပါ။",
+    rec: "Ask for: a glitch heading - red #FF2A6D and cyan #05D9E8 copies offset ±2px behind white text, faint horizontal scanlines, and a short sliced jitter every few seconds, on black.",
+    recM: "တောင်းဆိုရန် - Glitch ခေါင်းစဉ် - အဖြူရောင်စာ၏ နောက်တွင် ±2px ရွှေ့ထားသော အနီ #FF2A6D နှင့် စိမ်းပြာ #05D9E8 မိတ္တူများ၊ ဖျော့ဖျော့ အလျားလိုက် Scanline များ၊ စက္ကန့်အနည်းငယ်တိုင်း ခဏတာ အပိုင်းလိုက် တုန်ခါမှုကို အနက်ရောင်ပေါ်တွင် ထားပါ။"
+  },
+  {
+    id: "beam",
+    g: 1,
+    n: "Border Beam",
+    mn: "ဘောင်ပတ် အလင်းတန်း (Border Beam)",
+    e: "A short streak of colored light travelling around a card's border. The current signature of AI and developer-tool landing pages.",
+    m: "ကတ်တစ်ခု၏ ဘောင်တစ်လျှောက် ပတ်ပြေးနေသော အရောင်ပါ အလင်းတန်းတိုတို။ AI နှင့် Developer Tool Landing Page များ၏ လက်ရှိ လက္ခဏာ။",
+    css: "conic-gradient border-box · @property angle · keyframes rotate",
+    warn: "One beam per screen - it's a spotlight for the single most important card.",
+    warnM: "မျက်နှာပြင်တစ်ခုလျှင် Beam တစ်ခုသာ - အရေးအကြီးဆုံး ကတ်တစ်ခုတည်းအတွက် Spotlight ဖြစ်သည်။",
+    rec: "Ask for: an animated border beam on the featured pricing card - 1px border with a violet #7C3AED to cyan #22D3EE conic-gradient streak (about 25% of the perimeter) circling every 4 seconds, dark #0E0E16 card.",
+    recM: "တောင်းဆိုရန် - အထူးပြု Pricing ကတ်တွင် လှုပ်ရှားနေသော Border Beam - ခရမ်း #7C3AED မှ စိမ်းပြာ #22D3EE Conic-gradient အလင်းတန်း (ဘောင်၏ ၂၅% ခန့်) ပါသည့် 1px ဘောင်ကို ၄ စက္ကန့်တစ်ပတ် လည်စေပြီး ကတ်ကို အမှောင် #0E0E16 ထားပါ။"
+  },
+  {
+    id: "smoke",
+    g: 2,
+    n: "Abstract Smoke Art",
+    mn: "စိတ္တဇ မီးခိုးအနုပညာ (Abstract Smoke)",
+    e: "Wisps of colored smoke curling through a dark space - organic, mysterious, luxurious. Perfume, music, fashion and premium tech heroes.",
+    m: "အမှောင်ထဲတွင် ကွေးကောက်လွင့်မျောနေသော အရောင်ပါ မီးခိုးအမျှင်များ - သဘာဝဆန်၊ လျှို့ဝှက်ဆန်ပြီး ဇိမ်ခံဆန်သည်။ ရေမွှေး၊ ဂီတ၊ ဖက်ရှင်နှင့် Premium Tech Hero များ။",
+    css: "SVG feTurbulence + feDisplacementMap · blur() · screen blend",
+    warn: "Real smoke is a photo or video; the CSS version is an approximation. Put text on the calm side, not over the densest wisp.",
+    warnM: "အစစ်အမှန် မီးခိုးသည် ဓာတ်ပုံ သို့မဟုတ် ဗီဒီယိုဖြစ်ပြီး CSS ဗားရှင်းမှာ အနီးစပ်ဆုံးသာ ဖြစ်သည်။ စာသားကို အထူဆုံး မီးခိုးပေါ်တွင်မထားဘဲ ငြိမ်သက်သော ဘက်တွင် ထားပါ။",
+    rec: "Ask for: an abstract smoke hero - violet #8B5CF6, magenta #EC4899 and teal #14B8A6 smoke wisps drifting slowly across a near-black #07070C background, soft and blurred, concentrated on the right so the headline sits on clean dark space on the left.",
+    recM: "တောင်းဆိုရန် - Abstract Smoke Hero - ခရမ်း #8B5CF6၊ ပန်းခရမ်း #EC4899 နှင့် Teal #14B8A6 မီးခိုးအမျှင်များကို အနက်နီးပါး #07070C နောက်ခံပေါ်တွင် နှေးကွေးစွာ လွင့်မျောစေပြီး ပျော့ပျောင်း Blur ဖြစ်စေပါ။ ခေါင်းစဉ်ကို ဘယ်ဘက် သန့်ရှင်းသော အမှောင်နေရာတွင် ထားနိုင်ရန် ညာဘက်တွင် စုစည်းထားပါ။"
+  },
+  {
+    id: "aurora",
+    g: 2,
+    n: "Aurora / Mesh Gradient",
+    mn: "အရိုရာ / Mesh Gradient",
+    e: "Large, slow-moving blends of color that melt into each other, like the northern lights. The default modern SaaS and AI background.",
+    m: "မြောက်ဝင်ရိုးစွန်း အလင်းကဲ့သို့ တစ်ခုနှင့်တစ်ခု အရည်ပျော်ရောနှောနေသော ကြီးမားပြီး နှေးကွေးစွာ ရွေ့လျားသည့် အရောင်ရောစပ်မှုများ။ ခေတ်မီ SaaS နှင့် AI ၏ ပုံမှန်နောက်ခံ။",
+    css: "multiple radial-gradients · filter: blur(40px+) · slow keyframes",
+    warn: "Pick 2-3 hues that sit near each other on the wheel, or the blend turns muddy brown where they meet.",
+    warnM: "အရောင်စက်ဝိုင်းပေါ်တွင် အနီးကပ်ရှိသော အရောင် ၂-၃ မျိုးကိုသာ ရွေးပါ၊ မဟုတ်ပါက ဆုံရာနေရာတွင် ညိုမှိုင်းမှိုင်း ဖြစ်သွားမည်။",
+    rec: "Ask for: an aurora background - green #34D399, cyan #22D3EE and violet #8B5CF6 blobs, blurred 60px+, drifting slowly (20s loop) over dark navy #0B1026, with a subtle grain on top.",
+    recM: "တောင်းဆိုရန် - Aurora နောက်ခံ - အစိမ်း #34D399၊ စိမ်းပြာ #22D3EE နှင့် ခရမ်း #8B5CF6 အစုအခဲများကို 60px+ Blur လုပ်၍ Navy အမှောင် #0B1026 ပေါ်တွင် နှေးကွေးစွာ (၂၀ စက္ကန့် Loop) လွင့်မျောစေပြီး အပေါ်တွင် မသိမသာ Grain ထည့်ပါ။"
+  },
+  {
+    id: "grain",
+    g: 2,
+    n: "Grain / Noise",
+    mn: "အစေ့အဆံ / Noise",
+    e: "A fine film-grain texture laid over a gradient or photo. Kills color banding and makes flat digital color feel tactile and printed.",
+    m: "Gradient သို့မဟုတ် ဓာတ်ပုံပေါ်တွင် ထပ်ထားသော ဖလင်အစေ့ Texture သေးသေးလေး။ အရောင်အဆင့်ကွဲ (Banding) ကို ဖျောက်ပြီး ပြားချပ်ချပ် Digital အရောင်ကို ပုံနှိပ်ထားသကဲ့သို့ ထိတွေ့နိုင်သည့် ခံစားမှု ပေးသည်။",
+    css: "SVG feTurbulence as background-image · mix-blend-mode: overlay",
+    warn: "Keep it subtle (5-15% opacity). If you notice the grain before the content, it's too strong.",
+    warnM: "မသိမသာ ထားပါ (Opacity ၅-၁၅%)။ အကြောင်းအရာထက် Grain ကို အရင်သတိထားမိပါက ပြင်းလွန်းနေပြီ။",
+    rec: "Ask for: a fine noise/grain overlay at around 12% opacity, blended with 'overlay', on top of the orange #FF8A3D to purple #6D28D9 hero gradient - static, not animated.",
+    recM: "တောင်းဆိုရန် - လိမ္မော် #FF8A3D မှ ခရမ်း #6D28D9 Hero Gradient ပေါ်တွင် Opacity ၁၂% ခန့်၊ 'overlay' Blend ဖြင့် သေးငယ်သော Noise/Grain Overlay - လှုပ်ရှားမှုမပါဘဲ ငြိမ်နေစေပါ။"
+  },
+  {
+    id: "holo",
+    g: 2,
+    n: "Holographic / Iridescent",
+    mn: "ဟိုလိုဂရမ် / သက်တံ့ရောင် (Holographic)",
+    e: "Pastel rainbow color that shifts as it moves, like a foil sticker or soap bubble. Y2K, beauty, collectible cards, NFTs.",
+    m: "Foil စတစ်ကာ သို့မဟုတ် ဆပ်ပြာပူဖောင်းကဲ့သို့ လှုပ်ရှားသည်နှင့်အမျှ ပြောင်းလဲနေသော ပေါ့ပါးသည့် သက်တံ့ရောင်။ Y2K၊ အလှကုန်၊ စုဆောင်းကတ်များ၊ NFT များ။",
+    css: "linear-gradient (oversized) · background-position keyframes · conic sheen",
+    warn: "Use it as a surface or accent; text directly on it needs a solid backing to stay readable.",
+    warnM: "မျက်နှာပြင် သို့မဟုတ် အလှဆင်ရန်သာ သုံးပါ၊ ၎င်းပေါ်တွင် တိုက်ရိုက်ရေးသော စာသားအတွက် ဖတ်ရလွယ်စေရန် အရောင်အပြည့် နောက်ခံ လိုအပ်သည်။",
+    rec: "Ask for: a holographic foil card - pastel pink #FBC2EB, lilac #A6C1EE, mint #C2FFD8 and peach #FDE2A7 gradient at 300% size, shifting position on hover or tilt, with a soft white sheen.",
+    recM: "တောင်းဆိုရန် - Holographic Foil ကတ် - ပန်းဖျော့ #FBC2EB၊ ခရမ်းဖျော့ #A6C1EE၊ မင့်စိမ်း #C2FFD8 နှင့် မက်မွန်ရောင် #FDE2A7 Gradient ကို ၃၀၀% အရွယ်ဖြင့် Hover သို့မဟုတ် စောင်းချိန်တွင် နေရာရွှေ့စေပြီး ပျော့ပျောင်းသော အဖြူရောင် အရောင်လက်ထည့်ပါ။"
+  },
+  {
+    id: "blob",
+    g: 2,
+    n: "Liquid Blob",
+    mn: "အရည်ပုံ အစုအခဲ (Liquid Blob)",
+    e: "Soft organic shapes that slowly morph and wobble behind the content. Friendly, playful, human - health, finance and onboarding screens.",
+    m: "အကြောင်းအရာ နောက်ကွယ်တွင် နှေးကွေးစွာ ပုံပြောင်းပြီး လှုပ်ယမ်းနေသော ပျော့ပျောင်းသည့် သဘာဝပုံသဏ္ဌာန်များ။ ဖော်ရွေ၊ ပျော်စရာကောင်းပြီး လူသားဆန်သည် - ကျန်းမာရေး၊ ငွေကြေးနှင့် Onboarding မျက်နှာပြင်များ။",
+    css: "border-radius (8-value) keyframes · gradient fill · blur() optional",
+    warn: "Slow it down - 8 seconds or more per cycle. Fast blobs feel anxious, not friendly.",
+    warnM: "နှေးကွေးစေပါ - တစ်ပတ်လျှင် ၈ စက္ကန့် သို့မဟုတ် ထို့ထက်ပို။ မြန်သော Blob များက ဖော်ရွေခြင်း မဟုတ်ဘဲ စိုးရိမ်စရာ ခံစားရစေသည်။",
+    rec: "Ask for: two soft liquid blobs behind the hero - coral #FF8A80 and lavender #B39DDB gradients, morphing border-radius on a 10s loop, on a warm off-white #FFF8F3 background.",
+    recM: "တောင်းဆိုရန် - Hero နောက်ကွယ်တွင် ပျော့ပျောင်းသော Liquid Blob နှစ်ခု - Coral #FF8A80 နှင့် Lavender #B39DDB Gradient များ၊ ၁၀ စက္ကန့် Loop ဖြင့် Border-radius ပုံပြောင်းစေပြီး နွေးထွေးသော အဖြူနီးပါး #FFF8F3 နောက်ခံပေါ်တွင် ထားပါ။"
+  }
+];
+
 export const UI = {
   en: {
     kick: "Visual reference",
@@ -869,6 +1076,11 @@ export const UI = {
     headLbl: "Heading",
     bodyLbl: "Body",
     recLbl: "How to ask for it",
+    tabEffects: "Effects",
+    fxH: "Visual effects",
+    fxP: "Light, flash, smoke and texture - the finishing layer that sits on top of a style. Every preview below is live CSS.",
+    fxBuilt: "Built with",
+    fxWatch: "Watch out",
     closer: "<b>If you only remember ten:</b> Traditional, Minimalism, Maximalism, Skeuomorphism, Flat, Material, Neumorphism, Glassmorphism, Neo-brutalism, Bento. Those cover almost everything a client or a designer will actually say out loud.",
     sig: "30 specimens<br>4 families<br>rendered in CSS"
   },
@@ -908,6 +1120,11 @@ export const UI = {
     headLbl: "ခေါင်းစဉ်ဖောင့်",
     bodyLbl: "Body ဖောင့်",
     recLbl: "ဘယ်လို တောင်းဆိုရမလဲ",
+    tabEffects: "အထူးပြုလုပ်ချက်များ",
+    fxH: "မြင်ကွင်း အထူးပြုလုပ်ချက်များ (Effects)",
+    fxP: "အလင်း၊ လျှပ်တပြက်၊ မီးခိုးနှင့် Texture - စတိုင်တစ်ခု၏ အပေါ်တွင် ထပ်ထားသော နောက်ဆုံး အလှဆင်အလွှာ။ အောက်ပါ နမူနာတိုင်းသည် တိုက်ရိုက် CSS ဖြစ်သည်။",
+    fxBuilt: "တည်ဆောက်ပုံ",
+    fxWatch: "သတိပြုရန်",
     closer: "<b>၁၀ ခုမျှသာ မှတ်သားမည်ဆိုပါက -</b> Traditional, Minimalism, Maximalism, Skeuomorphism, Flat, Material, Neumorphism, Glassmorphism, Neo-brutalism, Bento တို့ဖြစ်ပါသည်။ ဒါများသည် အပ်နှံသူ သို့မဟုတ် ဒီဇိုင်နာတစ်ဦး ပြောဆိုမည့် စတိုင်အများစုကို လွှမ်းခြုံနိုင်ပါသည်။",
     sig: "နမူနာ ၃၀<br>အုပ်စု ၄ မျိုး<br>CSS ဖြင့် ဖန်တီးထားသည်"
   }

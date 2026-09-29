@@ -35,6 +35,7 @@ ink scale, and the soft extrusions are reserved for surfaces, never for text.
 src/
   index.css            design system: theme vars, light/dark, nm-*/y2k-*/label
   styles/swatches.css  the 30 specimen colour worlds (deliberately not Tailwind)
+  styles/effects.css   live previews for the Effects tab (light, flash, smoke…)
   data/content.js      all copy, EN + MY, extracted from the original
   components/          Swatch, StyleCard, DetailSheet, Masthead, Topbar, Rail…
   App.jsx              language state, sections, modal wiring

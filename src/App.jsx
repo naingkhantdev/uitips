@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react";
-import { STYLES, GROUPS, RAIL, METHOD, VOCAB, COLOR, ALIGN, COMBOS, LIBRARIES, UI } from "./data/content.js";
+import { STYLES, GROUPS, RAIL, METHOD, VOCAB, COLOR, ALIGN, COMBOS, LIBRARIES, EFFECTS, FX_GROUPS, UI } from "./data/content.js";
 import Topbar from "./components/Topbar.jsx";
 import Masthead from "./components/Masthead.jsx";
 import Tabs from "./components/Tabs.jsx";
 import ComboPreview from "./components/ComboPreview.jsx";
+import EffectPreview from "./components/EffectPreview.jsx";
 import SectionHead from "./components/SectionHead.jsx";
 import StyleCard from "./components/StyleCard.jsx";
 import DetailSheet from "./components/DetailSheet.jsx";
@@ -26,6 +27,7 @@ export default function App() {
     { id: "styles", label: t.tabStyles, count: pad(STYLES.length) },
     { id: "color", label: t.tabColor, count: pad(COLOR.length) },
     { id: "combos", label: t.tabCombos, count: pad(COMBOS.length) },
+    { id: "effects", label: t.tabEffects, count: pad(EFFECTS.length) },
     { id: "principles", label: t.tabPrinciples, count: pad(METHOD.length + ALIGN.length + VOCAB.length) },
     { id: "resources", label: t.tabResources, count: pad(LIBRARIES.length) }
   ];
@@ -154,6 +156,67 @@ export default function App() {
                           <span className={`label ${my ? "label-my" : ""}`}>{t.recLbl}</span>
                           <p className={`m-0 text-[11.5px] leading-[1.5] text-ink-2 ${my ? "my" : ""}`}>
                             {my ? c.recM : c.rec}
+                          </p>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              );
+            })}
+          </section>
+        )}
+
+        {tab === "effects" && (
+          <section className="pt-14">
+            <SectionHead lang={lang} title={t.fxH} count={pad(EFFECTS.length)} intro={t.fxP} />
+
+            {FX_GROUPS.map((group, g) => {
+              const items = EFFECTS.filter((fx) => fx.g === g);
+              return (
+                <div key={group.e} className="mt-9 first:mt-0">
+                  <h3
+                    className={`m-0 mb-4 flex items-center gap-2.5 border-b border-rule pb-2.5 ${
+                      my ? "my text-[15px] font-semibold text-ink" : "text-[13px] font-semibold tracking-[-.01em] text-ink"
+                    }`}
+                  >
+                    {my ? group.m : group.e}
+                    <span className="num nm-sink px-2 py-1 font-mono text-[10px] tracking-[.08em] text-ink-3">
+                      {pad(items.length)}
+                    </span>
+                  </h3>
+
+                  <div className="grid grid-cols-[repeat(auto-fill,minmax(250px,1fr))] gap-4">
+                    {items.map((fx) => (
+                      <div key={fx.id} className="nm-raise-sm flex flex-col gap-3 p-4">
+                        <b className={`m-0 text-[13.5px] leading-[1.3] font-semibold text-ink ${my ? "my text-[14px]" : ""}`}>
+                          {my ? fx.mn : fx.n}
+                        </b>
+
+                        <div className="overflow-hidden rounded-[10px] shadow-[inset_0_0_0_1px_var(--nm-rule)]">
+                          <EffectPreview id={fx.id} />
+                        </div>
+
+                        <span className={`text-[12.5px] leading-[1.5] text-ink-2 ${my ? "my" : ""}`}>
+                          {my ? fx.m : fx.e}
+                        </span>
+
+                        <div className="flex flex-col gap-1">
+                          <span className={`label ${my ? "label-my" : ""}`}>{t.fxBuilt}</span>
+                          <code className="font-mono text-[10.5px] leading-[1.5] text-ink-3">{fx.css}</code>
+                        </div>
+
+                        <div className="flex flex-col gap-1">
+                          <span className={`label ${my ? "label-my" : ""}`}>{t.fxWatch}</span>
+                          <p className={`m-0 text-[12px] leading-[1.5] text-ink-2 ${my ? "my" : ""}`}>
+                            {my ? fx.warnM : fx.warn}
+                          </p>
+                        </div>
+
+                        <div className="nm-sink mt-auto flex flex-col gap-1 px-3 py-2.5">
+                          <span className={`label ${my ? "label-my" : ""}`}>{t.recLbl}</span>
+                          <p className={`m-0 text-[11.5px] leading-[1.5] text-ink-2 ${my ? "my" : ""}`}>
+                            {my ? fx.recM : fx.rec}
                           </p>
                         </div>
                       </div>
